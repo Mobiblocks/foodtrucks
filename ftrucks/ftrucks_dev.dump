@@ -1,0 +1,605 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.3
+-- Dumped by pg_dump version 15.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.schema_migrations (
+    version bigint NOT NULL,
+    inserted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO postgres;
+
+--
+-- Name: trucks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.trucks (
+    id bigint NOT NULL,
+    truckid character varying(32) NOT NULL,
+    applicant character varying(255),
+    f_type character varying(255),
+    descr character varying(255),
+    address character varying(255),
+    status character varying(255),
+    items character varying(2000) DEFAULT ' '::character varying
+);
+
+
+ALTER TABLE public.trucks OWNER TO postgres;
+
+--
+-- Name: trucks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.trucks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.trucks_id_seq OWNER TO postgres;
+
+--
+-- Name: trucks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.trucks_id_seq OWNED BY public.trucks.id;
+
+
+--
+-- Name: trucks id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.trucks ALTER COLUMN id SET DEFAULT nextval('public.trucks_id_seq'::regclass);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.schema_migrations (version, inserted_at) FROM stdin;
+20230621010143	2023-06-21 02:52:08
+\.
+
+
+--
+-- Data for Name: trucks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.trucks (id, truckid, applicant, f_type, descr, address, status, items) FROM stdin;
+3	735318	Ziaurehman Amini	Push Cart	MARKET ST: DRUMM ST intersection	5 THE EMBARCADERO	REQUESTED	\N
+4	1612654	Sunset Mercantile/Outer Sunset Farmers Market & Mercantile	Truck	37TH AVE: QUINTARA ST to RIVERA ST (2100 - 2199)	2155 37TH AVE	REQUESTED	Multiple Food Trucks & Food Types
+5	1658690	Bonito Poke	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	430 CALIFORNIA ST	APPROVED	Bonito Poke Bowls & Various Drinks
+6	1652620	Off the Grid Services, LLC	Truck	BERRY ST: 03RD ST to 04TH ST (100 - 199)	185 BERRY ST	APPROVED	everything except for hot dogs
+7	1652621	Off the Grid Services, LLC	Truck	BROADWAY: DAVIS ST to FRONT ST (50 - 99)	90 BROADWAY	APPROVED	everything except for hot dogs
+8	1652610	Off the Grid Services, LLC	Truck	BERRY ST: 03RD ST to 04TH ST (100 - 199)	185 BERRY ST	APPROVED	everything except for hot dogs
+9	1652619	Off the Grid Services, LLC	Truck	04TH ST: HOWARD ST to CLEMENTINA ST (200 - 267)	250 04TH ST	APPROVED	everything except for hot dogs
+10	1652625	Off the Grid Services, LLC	Truck	MARY ST: MINNA ST to NATOMA ST (24 - 69)	44 MARY ST	APPROVED	Multiple Food Trucks & Food Types
+11	1652623	Off the Grid Services, LLC	Truck	BRANNAN ST: 04TH ST to 05TH ST (500 - 599)	525 BRANNAN ST	APPROVED	Everything
+12	1652622	Off the Grid Services, LLC	Truck	BRANNAN ST: STANFORD ST to JACK LONDON ALY (324 - 353)	340 BRANNAN ST	APPROVED	Everything
+13	1652582	Off the Grid Services, LLC	Truck	BROADWAY: DAVIS ST to FRONT ST (50 - 99)	90 BROADWAY	APPROVED	everything except for hot dogs
+14	1658680	The New York Frankfurter Co. of CA, Inc. DBA: Annie's Hot Dogs	Push Cart	STOCKTON ST: OFARRELL ST to GEARY ST (100 - 199)	101 STOCKTON ST	APPROVED	Soft Pretzels: hot dogs: sausage: chips: popcorn: soda: espresso: cappucino: pastries: ice cream: italian sausages: shish-ka-bob: churros: juice: water: various drinks
+15	1660554	Bay Area Mobile Catering, Inc. dba. Taqueria Angelica's	Truck	FOLSOM ST: 11TH ST to NORFOLK ST (1500 - 1548)	1501 FOLSOM ST	APPROVED	Tacos: burritos: soda & juice
+16	1660552	Bay Area Mobile Catering, Inc. dba. Taqueria Angelica's	Truck	CESAR CHAVEZ ST: INDIANA ST to IOWA ST (1300 - 1399)	1301 CESAR CHAVEZ ST	APPROVED	Tacos: Burritos: Tortas: Quesadillas: Sodas: Chips: Candy
+17	1660843	El Alambre	Truck	FRANKLIN ST: OFARRELL ST \\ STARR KING WAY to MYRTLE ST (1100 - 1149)	1100 FRANKLIN ST	APPROVED	Tacos: Burritos: Quesadillas: Nachos Alambres: Choice of Meat: Carne Asada: Carnitas: Pollo: Al Pastor Camarones
+18	1660842	El Alambre	Truck	14TH ST: FOLSOM ST to SHOTWELL ST (100 - 150)	1800 FOLSOM ST	APPROVED	Tacos: Burritos: Quesadillas: Tortas
+19	1660844	El Alambre	Truck	FRANKLIN ST: MYRTLE ST to GEARY BLVD (1150 - 1199)	1188 FRANKLIN ST	APPROVED	Tacos: Burritos: Quesadillas: Nachos Alambres: Choice of Meat: Carne Asada: Carnitas: Pollo: Al Pastor Camarones
+20	1660841	El Alambre	Truck	SHOTWELL ST: 14TH ST to 15TH ST (1 - 99)	1800 FOLSOM ST	APPROVED	Tacos: Burritos: Quesadillas: Tortas
+21	1660553	Bay Area Mobile Catering, Inc. dba. Taqueria Angelica's	Truck	25TH ST: ALABAMA ST to HARRISON ST (3042 - 3099)	3065 25TH ST	APPROVED	Tacos: burritos: soda & juice
+22	1660555	Bay Area Mobile Catering, Inc. dba. Taqueria Angelica's	Truck	MISSION ST: 10TH ST to 11TH ST (1400 - 1499)	1455 MARKET ST	APPROVED	Tacos: burritos: soda & juice
+23	1666758	DO UC US Mobile Catering	Truck	MARIN ST: KANSAS ST to HWY 101 N ON RAMP (2500 - 2599)	2590 MARIN ST	APPROVED	Cold truck: sandwiches: salads: beverages: chips: candy: cookies: coffee: tea: drinks
+24	1587567	Brazuca Grill	Truck	MARIPOSA ST: TENNESSEE ST to 04TH ST \\ MINNESOTA ST (600 - 699)	601 MARIPOSA ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+25	1587393	Truly Food & More	Truck	GENEVA AVE: PRAGUE ST to LINDA VISTA STPS (1500 - 1598) -- SOUTH --	1500 GENEVA AVE	REQUESTED	Latin Food: Tacos: Pupusas: Vegetables: Salad: Water: Sodas
+26	1666755	DO UC US Mobile Catering	Truck	PARNASSUS AVE: HILLWAY AVE to 03RD AVE (400 - 599)	400 PARNASSUS AVE	APPROVED	Cold truck: sandwiches: salads: beverages: chips: candy: cookies: coffee: tea: drinks
+27	1621287	Street Meet	Truck	VALENCIA ST: 14TH ST to ROSA PARKS LN (300 - 337)	306 VALENCIA ST	REQUESTED	Burritos: Tacos: Tortas: Quesadillas & Various Drinks.
+28	1666757	DO UC US Mobile Catering	Truck	04TH ST: MISSION BAY BLVD to NELSON RISING LN (1400 - 1499)	1420 04TH ST	APPROVED	Cold truck: sandwiches: salads: beverages: chips: candy: cookies: coffee: tea: drinks
+29	1666756	DO UC US Mobile Catering	Truck	03RD ST: MISSION BAY BLVD to WARRIORS WAY (1401 - 1599) -- EAST --	1501 03RD ST	APPROVED	Cold truck: sandwiches: salads: beverages: chips: candy: cookies: coffee: tea: drinks
+30	1591840	Tacos Rodriguez	Truck	EVANS AVE: KEITH ST to MENDELL ST (1201 - 1399) -- SOUTH --	1275 EVANS AVE	SUSPEND	Tacos: burritos: quesadillas: soda & water
+31	1591842	Tacos Rodriguez	Truck	OAKDALE AVE: INDUSTRIAL ST \\ SELBY ST to TOLAND ST (2100 - 2199)	2198 OAKDALE AVE	SUSPEND	Tacos: burritos: quesadillas: soda & water
+32	1591841	Tacos Rodriguez	Truck	MENDELL ST: GALVEZ AVE to HUDSON AVE (600 - 699)	600 MENDELL ST	SUSPEND	Tacos: burritos: quesadillas: soda & water
+33	1660531	Natan's Catering	Truck	03RD ST: MARIN ST to ARTHUR AVE \\ CARGO WAY (3201 - 3399) -- EAST --	3201 03RD ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+34	1591839	Tacos Rodriguez	Truck	SANSOME ST: SUTTER ST to BUSH ST (1 - 99)	1 SANSOME ST	SUSPEND	Tacos: burritos: quesadillas: soda & water
+35	1660523	Natan's Catering	Truck	POTRERO AVE: 10TH ST \\ BRANNAN ST \\ DIVISION ST to ALAMEDA ST (1 - 99)	66 POTRERO AVE	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+36	1660549	Natan's Catering	Truck	MISSOURI ST: 20TH ST to SIERRA ST (500 - 630)	555 MISSOURI ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+37	1336741	Quan Catering	Truck	BURKE AVE: START: 1500-1599 BLOCK to 03RD ST (1500 - 1599)	1575 BURKE AVE	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+38	1337426	Liang Bai Ping	Truck	PALOU AVE: PALOU AVE to GRIFFITH ST (904 - 999)	Assessors Block /Lot	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+39	848184	Reecees Soulicious	Truck	BAY SHORE BLVD: BAY SHORE BLVD to OAKDALE AVE (185 - 299) -- EAST --	201 BAY SHORE BLVD	REQUESTED	Fried Chicken: Fried Fish: Greens: Mac & Cheese: Peach Cobbler: and String beans
+40	1332942	Mini Mobile Food Catering	Truck	FREMONT ST: TRANSBAY HUMP to NATOMA ST (116 - 169)	147 FREMONT ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+41	1343831	Got Snacks	Push Cart	03RD ST: TERRY A FRANCOIS BLVD to CHANNEL ST (1000 - 1099)	1020 03RD ST	REQUESTED	sunflower seeds: crackerjacks: bottled water: peanuts: candy
+42	1047831	The Chef Station	Truck	10TH ST: FELL ST \\ MARKET ST \\ POLK ST to STEVENSON ST (1 - 18)	8 10TH ST	REQUESTED	South American/Peruvian food
+43	1568975	California Kahve	Truck	LA PLAYA: LINCOLN WAY \\ MARTIN LUTHER KING JR DR to IRVING ST (1200 - 1299)	1234 GREAT HWY	EXPIRED	Drip Coffee: Espresso Drinks: Matcha Green Tea: Black Teas: Herbal Teas: Crossaints: Savory and Sweet Breads
+44	934516	Scotch Bonnet	Truck	01ST ST: STEVENSON ST to JESSIE ST (21 - 56)	50 01ST ST	EXPIRED	Jerk chicken: curry chicken: curry goat: curry dhal: Burritos: Fish: Ox tails: rice: beans: veggies.
+45	1660511	Think is Good Inc.	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	430 CALIFORNIA ST	APPROVED	Lobster rolls: crab rolls: lobster burritos: crab burritos: chicken burritos: fish burritos: chicken burritos: poke bowls: soups: chips & soda.
+46	1337425	Liang Bai Ping	Truck	PALOU AVE: PALOU AVE to GRIFFITH ST (904 - 999)	931 PALOU AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+47	1660537	Natan's Catering	Truck	EVANS AVE: RANKIN ST to SELBY ST (1800 - 1890)	1801 EVANS AVE	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+48	1660529	Natan's Catering	Truck	\N	1650 03RD ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+49	1660535	Natan's Catering	Truck	07TH ST: HOOPER ST to IRWIN ST (1100 - 1199)	1140 07TH ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+50	1660518	Natan's Catering	Truck	\N	Assessors Block 4227/Lot012	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+51	1660541	Natan's Catering	Truck	16TH ST: 04TH ST to OWENS ST (600 - 699)	600 16TH ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+52	1660513	Natan's Catering	Truck	\N	Assessors Block 8722/Lot003	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+53	1660520	Natan's Catering	Truck	\N	Assessors Block 4046/Lot001	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+54	1660539	Natan's Catering	Truck	HARRISON ST: MERLIN ST to OAK GROVE ST (924 - 950)	950 HARRISON ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+55	1660538	Natan's Catering	Truck	EVANS AVE: NAPOLEON ST \\ TOLAND ST to MARIN ST (2000 - 2099)	2045 EVANS AVE	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+56	1660526	Natan's Catering	Truck	25TH ST: MARYLAND ST to MICHIGAN ST (400 - 699)	Assessors Block 4241/Lot002	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+57	1660532	Natan's Catering	Truck	ALEMANY BLVD: FOLSOM ST to ELLSWORTH ST \\ I-280 S OFF RAMP \\ I-280 S ON RAMP (400 - 498) -- NORTH --	400 ALEMANY BLVD	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+58	1660540	Natan's Catering	Truck	HARRISON ST: 26TH ST to KAMILLE CT (3000 - 3048)	3040 HARRISON ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+59	1660521	Natan's Catering	Truck	\N	Assessors Block 5216/Lot030	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+60	1660517	Natan's Catering	Truck	\N	Assessors Block 4058/Lot010	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+61	1660519	Natan's Catering	Truck	\N	Assessors Block 5369/Lot003	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+62	1660514	Natan's Catering	Truck	\N	Assessors Block 5598/Lot031	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+63	1660548	Natan's Catering	Truck	MENDELL ST: CARGO WAY to NEWHALL ST (1 - 199)	151 MENDELL ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+64	1660542	Natan's Catering	Truck	\N	Assessors Block 8722/Lot001	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+65	1660524	Natan's Catering	Truck	QUINT ST: ARTHUR AVE to CUSTER AVE (1 - 199)	50 QUINT ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+66	1587522	Chairman SF, LLC	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	400 CALIFORNIA ST	EXPIRED	Baos: bowls & drinks
+67	1660516	Natan's Catering	Truck	\N	Assessors Block 4172/Lot010	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+68	1660547	Natan's Catering	Truck	MARIN ST: START: 800-949 BLOCK to MICHIGAN ST (800 - 899)	888 MARIN ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+69	1660545	Natan's Catering	Truck	KANSAS ST: 16TH ST to 17TH ST (300 - 399)	350 KANSAS ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+70	1660534	Natan's Catering	Truck	BURKE AVE: START: 1500-1599 BLOCK to 03RD ST (1500 - 1599)	1580 BURKE AVE	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+71	1660546	Natan's Catering	Truck	17TH ST: MISSION ST to HOFF ST (3300 - 3343)	3335 17TH ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+72	1660527	Natan's Catering	Truck	MISSION BAY BLVD SOUTH: 03RD ST \\ MISSION BAY BLVD to 04TH ST \\ MISSION BAY BLVD (501 - 599)	Assessors Block 8732/Lot001	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+73	1660512	Think is Good Inc.	Truck	MISSION ST: SHAW ALY to ANTHONY ST (543 - 586)	560 MISSION ST	APPROVED	Lobster rolls: crab rolls: lobster burritos: crab burritos: chicken burritos: fish burritos: chicken burritos: poke bowls: soups: chips & soda.
+74	1587548	Brazuca Grill	Truck	03RD ST: MARIPOSA ST to 18TH ST (2001 - 2099) -- EAST --	2085 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+75	1660528	Natan's Catering	Truck	26TH ST: RHODE ISLAND ST to KANSAS ST (2200 - 2299)	Assessors Block 4281a/Lot012A	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+76	1660544	Natan's Catering	Truck	ILLINOIS ST: 25TH ST to ILLINOIS ST (1500 - 1599)	Assessors Block 4296/Lot010	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+77	1660515	Natan's Catering	Truck	\N	Assessors Block 7295/Lot022	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+78	1658693	Bonito Poke	Truck	01ST ST: HOWARD ST to TEHAMA ST (200 - 231)	505 HOWARD ST	REQUESTED	Bonito Poke Bowls & Various Drinks
+79	1660522	Natan's Catering	Truck	\N	Assessors Block 4103/Lot023A	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+80	1660510	Think is Good Inc.	Truck	PINE ST: FRONT ST to BATTERY ST (100 - 199)	100 PINE ST	APPROVED	Lobster rolls: crab rolls: lobster burritos: crab burritos: chicken burritos: fish burritos: chicken burritos: poke bowls: soups: chips & soda.
+81	1660530	Natan's Catering	Truck	03RD ST: 18TH ST to 19TH ST (2101 - 2199) -- EAST --	2101 03RD ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+82	1660533	Natan's Catering	Truck	CESAR CHAVEZ ST: 03RD ST to TENNESSEE ST (1000 - 1099)	Assessors Block 4315/Lot03008	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+83	1660536	Natan's Catering	Truck	CONNECTICUT ST: 17TH ST to MARIPOSA ST (100 - 199)	146 CONNECTICUT ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+84	1660543	Natan's Catering	Truck	ILLINOIS ST: MARIPOSA ST \\ TERRY A FRANCOIS BLVD to 18TH ST (600 - 699)	Assessors Block 3941/Lot001	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+85	1658672	Casita Vegana	Truck	JOHN MUIR DR: LAKE MERCED BLVD to SKYLINE BLVD (200 - 699)	Assessors Block 7283/Lot004	APPROVED	Coffee: Vegan Pastries: Vegan Hot Dogs: Vegan Tamales: Te: Vegan Shakes
+86	1535606	Wu Wei LLC dba MoBowl	Truck	STEUART LN: HOWARD ST \\ STEUART ST to END: 200-249 BLOCK (1 - 99)	75 HOWARD ST	EXPIRED	Various types of meat: veggie: and seafood bowls.
+87	1684002	Zuri Food Facilities	Truck	MARIPOSA ST: ARKANSAS ST to CAROLINA ST (1500 - 1699)	1601 MARIPOSA ST	APPROVED	Peruvian Food Served Hot
+88	1684001	Zuri Food Facilities	Truck	SPEAR ST: MISSION ST to HOWARD ST (100 - 199)	100 SPEAR ST	APPROVED	Peruvian Food Served Hot
+89	1684000	Zuri Food Facilities	Truck	CALIFORNIA ST: LEIDESDORFF ST to MONTGOMERY ST (449 - 499)	475 CALIFORNIA ST	APPROVED	Peruvian Food Served Hot
+90	1683998	Zuri Food Facilities	Truck	02ND ST: STILLMAN ST to BRYANT ST (454 - 499)	490 02ND ST	APPROVED	Peruvian Food Served Hot
+91	1660525	Natan's Catering	Truck	\N	435 23RD ST	APPROVED	Burgers: melts: hot dogs: burritos:sandwiches: fries: onion rings: drinks
+92	1587541	Brazuca Grill	Truck	\N	601 23RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+93	1658389	BH & MT LLC	Truck	\N	401 23RD ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+94	1660679	BOWL'D ACAI, LLC.	Truck	LARKIN ST: FULTON ST to MCALLISTER ST (200 - 299)	200 LARKIN ST	APPROVED	Acai Bowls: Smoothies: Juices
+95	1660615	Eva's Catering	Truck	ORTEGA ST: 18TH AVE to 19TH AVE (1100 - 1199)	1100 ORTEGA ST	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+96	1660695	Halal Cart of San Francisco	Push Cart	CALIFORNIA ST: LEIDESDORFF ST to MONTGOMERY ST (449 - 499)	400 MONTGOMERY ST	APPROVED	Halal Gyro over Rice: Halal Chicken over Rice: Halal Gyro: and Chicken Sandwich
+97	1660628	San Francisco's Hometown Creamery	Truck	PINE ST: SANSOME ST to CENTURY PL (300 - 340)	301 PINE ST	APPROVED	Ice cream & Waffle cones
+98	1660629	San Francisco's Hometown Creamery	Truck	POST ST: STOCKTON ST to POWELL ST (300 - 399)	340 POST ST	APPROVED	Ice Cream: Waffle Cones
+99	1660696	Halal Cart of San Francisco	Push Cart	MARKET ST: STEUART ST to SPEAR ST (1 - 99) -- SOUTH --	1 MARKET ST	APPROVED	Halal Gyro over Rice: Halal Chicken over Rice: Halal Gyro: and Chicken Sandwich
+100	1660627	San Francisco's Hometown Creamery	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	425 CALIFORNIA ST	APPROVED	Ice Cream: Waffle Cones
+101	1660641	Buenafe	Truck	MISSISSIPPI ST: 07TH ST \\ 16TH ST to 17TH ST (1 - 99)	901 16TH ST	APPROVED	Tacos burritos quesadillas tortas pupusas flautas tamales
+102	1660618	Eva's Catering	Truck	20TH AVE: LAWTON ST to MORAGA ST (1600 - 1699)	1650 20TH AVE	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+103	1660691	Halal Cart, LLC	Push Cart	MONTGOMERY ST: CALIFORNIA ST to SACRAMENTO ST (400 - 499)	400 MONTGOMERY ST	APPROVED	kebabs: halal gyro: grilled halal meat: refreshments
+104	1660620	Eva's Catering	Truck	BRANNAN ST: 05TH ST to 06TH ST \\ I-280 NORTHBOUND \\ I-280 SOUTHBOUND (600 - 699)	630 BRANNAN ST	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+105	1660642	The Geez Freeze	Truck	18TH ST: DOLORES ST to CHURCH ST (3700 - 3799)	3750 18TH ST	APPROVED	Snow Cones: Soft Serve Ice Cream & Frozen Virgin Daiquiris
+106	1660626	San Francisco's Hometown Creamery	Truck	POST ST: MONTGOMERY ST to LICK PL (1 - 40)	1 MONTGOMERY ST	APPROVED	Ice Cream: Waffle Cones
+107	1660619	Eva's Catering	Truck	05TH ST: WELSH ST to BRANNAN ST (530 - 599)	530 05TH ST	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+108	1660630	Papalote Inc.	Truck	01ST ST: HOWARD ST to TEHAMA ST (200 - 231)	505 HOWARD ST	APPROVED	Mexican; Burritos: Burrito Bowls: Salads
+109	1660635	Philz Coffee Truck	Truck	MARINA BLVD: LAGUNA ST to BEACH ST \\ BUCHANAN ST \\ LOWER FORT MASON ST (1 - 99)	15 MARINA BLVD	APPROVED	Hot coffee: iced coffee: hot chocolate: tea: pastries
+110	1660638	Buenafe	Truck	RANKIN ST: DAVIDSON AVE to EVANS AVE (200 - 299)	220 RANKIN ST	APPROVED	Tacos: Burritos: Quesadillas: Tortas
+111	1660622	Eva's Catering	Truck	INGALLS ST: CARROLL AVE to DONNER AVE (2600 - 2699)	2600 INGALLS ST	APPROVED	Corndogs: fried burrito: rice placet: soda: water: sandwiches: soup: noodle plates
+112	1660634	Philz Coffee Truck	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	401 CALIFORNIA ST	APPROVED	Hot coffee: iced coffee: hot chocolate: tea: pastries
+113	1660621	Eva's Catering	Truck	EVANS AVE: NAPOLEON ST \\ TOLAND ST to MARIN ST (2000 - 2099)	2045 EVANS AVE	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+114	1660680	BOWL'D ACAI, LLC.	Truck	MONTGOMERY ST: CALIFORNIA ST to SACRAMENTO ST (400 - 499)	451 MONTGOMERY ST	APPROVED	Acai Bowls: Smoothies: Juices
+115	1660690	Halal Cart, LLC	Push Cart	MARKET ST: STEUART ST to SPEAR ST (1 - 99) -- SOUTH --	1 MARKET ST	APPROVED	kebabs: halal gyro: grilled halal meat: refreshments
+116	1660698	Truly Food & More	Truck	SANSOME ST: PINE ST to CALIFORNIA ST (200 - 299)	217 SANSOME ST	APPROVED	Latin Food: Tacos: Pupusas: Vegetables: Salad: Waters: Sodas
+117	1660682	BOWL'D ACAI, LLC.	Truck	BUCHANAN ST: NORTH POINT ST to BEACH ST \\ LOWER FORT MASON ST \\ MARINA BLVD (3700 - 3799)	15 MARINA BLVD	APPROVED	Acai Bowls: Poke Bowls: Smoothies: Juices
+118	1660678	BOWL'D ACAI, LLC.	Truck	BATTERY ST: PINE ST to CALIFORNIA ST (100 - 199)	111 BATTERY ST	APPROVED	Acai Bowls: Smoothies: Juices
+119	1660632	Philz Coffee Truck	Truck	PINE ST: BATTERY ST to SANSOME ST (200 - 299)	250 PINE ST	APPROVED	Hot coffee: iced coffee: hot chocolate: tea: pastries
+120	1660699	Truly Food & More	Truck	MISSION ST: 02ND ST to NEW MONTGOMERY ST (600 - 634)	602 MISSION ST	APPROVED	Latin Food: Tacos: Pupusas: Vegetables: Salad: Waters: Sodas
+121	1337457	Liang Bai Ping	Truck	OFARRELL ST: BRODERICK ST to SAINT JOSEPHS AVE (2200 - 2299)	2200 OFARRELL ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+122	1514026	F & C Catering	Truck	TENNESSEE ST: TENNESSEE ST to 26TH ST (1500 - 1599)	1500 TENNESSEE ST	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+123	1660631	Papalote Inc.	Truck	SPEAR ST: MARKET ST to MISSION ST (1 - 99)	60 SPEAR ST	APPROVED	Mexican; Burritos: Burrito Bowls: Salads
+124	1660616	Eva's Catering	Truck	ORTEGA ST: 18TH AVE to 19TH AVE (1100 - 1199)	1900 19TH AVE	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+125	1660617	Eva's Catering	Truck	ORTEGA ST: 18TH AVE to 19TH AVE (1100 - 1199)	1199 ORTEGA ST	APPROVED	Cold Truck: Burrito: Corn Dog: Salads: Sandwiches: Quesadilla: Tacos: Fried Rice: Cow Mein: Chinese Rice: Noodle Plates: Soup: Bacon: Eggs: Ham: Avacado: Sausages: Beverages
+126	1660625	San Francisco's Hometown Creamery	Truck	GEARY ST: STOCKTON ST to POWELL ST (200 - 299)	281 GEARY ST	APPROVED	Ice Cream & Waffle Cones
+127	1660693	Halal Cart, LLC	Push Cart	MARKET ST: FREMONT ST \\ FRONT ST to 01ST ST \\ BUSH ST (401 - 499) -- SOUTH --	455 MARKET ST	APPROVED	Gyros: Kebabs: soft drinks: and water
+128	1660697	Truly Food & More	Truck	01ST ST: HOWARD ST to TEHAMA ST (200 - 231)	505 HOWARD ST	APPROVED	Latin Food: Tacos: Pupusas: Vegetables: Salad: Waters: Sodas
+129	1509787	El Gallo Jiro	Truck	23RD ST: TREAT AVE to FOLSOM ST (3052 - 3099)	3055 23RD ST	EXPIRED	Burritos: Giros: Tortas: Quesadillas: Tacos & Various Beverages
+130	963992	Singh Brothers Ice Cream	Truck	QUESADA AVE: CRISP RD to HAWES ST (1170 - 1199)	1191 QUESADA AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+131	1343454	Esmeli Catering	Truck	HOOPER ST: 07TH ST to 08TH ST (100 - 199)	Assessors Block /Lot	REQUESTED	tacos: burritos: quesadilla: tortas sodas
+132	1089698	El Tonayense #60	Truck	HARRISON ST: MISTRAL ST to 20TH ST (2345 - 2399)	2355 FOLSOM ST	REQUESTED	Tacos: Burritos: Tortas: Quesadillas: Drinks
+133	1660633	Philz Coffee Truck	Truck	SUTTER ST: POWELL ST to MASON ST (500 - 599)	556 SUTTER ST	APPROVED	Hot coffee: iced coffee: hot chocolate: tea: pastries
+134	1660636	Philz Coffee Truck	Truck	MONTGOMERY ST: COLUMBUS AVE \\ WASHINGTON ST to JACKSON ST (700 - 799)	735 MONTGOMERY ST	APPROVED	Hot coffee: iced coffee: hot chocolate: tea: pastries
+135	1514031	F & C Catering	Truck	MINNESOTA ST: 23RD ST to 24TH ST (1200 - 1299)	1275 MINNESOTA ST	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+136	1660639	Buenafe	Truck	EVANS AVE: PHELPS ST to QUINT ST (1600 - 1699)	750 PHELPS ST	APPROVED	Tacos: Burritos: Quesadillas: Tortas
+137	1591847	Golden Gate Halal Food	Push Cart	MARKET ST: 07TH ST \\ CHARLES J BRENHAM PL to 08TH ST \\ GROVE ST \\ HYDE ST (1101 - 1199) -- SOUTH --	1169 MARKET ST	SUSPEND	Pulao Plates & Sandwiches: Various Drinks
+138	1514029	F & C Catering	Truck	03RD ST: 24TH ST to 25TH ST (2800 - 2898) -- WEST --	2800 03RD ST	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+139	1591779	Street Meet	Truck	GROVE ST: 08TH ST \\ HYDE ST \\ MARKET ST to LARKIN ST (1 - 55)	30 GROVE ST	SUSPEND	Burritos: Tacos: Quesadillas: Tortas: Carne Asada Fries and various drinks
+140	1591780	Street Meet	Truck	LARKIN ST: GROVE ST to FULTON ST (100 - 199)	100 LARKIN ST	SUSPEND	Burritos: Tacos: Quesadillas: Tortas: Carne Asada Fries and various drinks
+141	1535609	Wu Wei LLC dba MoBowl	Truck	FRONT ST: VALLEJO ST to GREEN ST (900 - 999)	900 FRONT ST	EXPIRED	Various types of meat: veggie: and seafood bowls.
+142	1535610	Wu Wei LLC dba MoBowl	Truck	HOWARD ST: 01ST ST to MALDEN ALY (500 - 589)	500 HOWARD ST	EXPIRED	Various types of meat: veggie: and seafood bowls.
+143	1591812	Flavors of Africa	Truck	MISSION ST: SHAW ALY to ANTHONY ST (543 - 586)	560 MISSION ST	SUSPEND	Meat and vegi rice bowls: meat and vegi salad bowls: meat and vegi wraps: drinks and juices.
+144	1535608	Wu Wei LLC dba MoBowl	Truck	DRUMM ST: CLAY ST to WASHINGTON ST (200 - 299)	253 DRUMM ST	EXPIRED	Various types of meat: veggie: and seafood bowls.
+145	1514028	F & C Catering	Truck	03RD ST: 24TH ST to 25TH ST (2800 - 2898) -- WEST --	2890 03RD ST	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+146	1334819	tacos y pupusas los trinos	\N	MISSION ST: AVALON AVE to COTTER ST (4368 - 4439)	4384 MISSION ST	REQUESTED	\N
+147	1515717	Treats by the Bay LLC	Push Cart	MARKET ST: STEUART ST to SPEAR ST (1 - 99) -- SOUTH --	1 MARKET ST	EXPIRED	Ice Cream: Donuts
+148	1524385	Leo's Hot Dogs	Push Cart	MISSION ST: 19TH ST to 20TH ST (2300 - 2399)	2301 MISSION ST	EXPIRED	Hot dogs and related toppings: non alcoholic beverages
+149	1514024	F & C Catering	Truck	\N	Assessors Block /Lot	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+150	1514030	F & C Catering	Truck	MINNESOTA ST: 20TH ST to 22ND ST (800 - 999)	900 MINNESOTA ST	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+151	1514027	F & C Catering	Truck	25TH ST: MICHIGAN ST to ILLINOIS ST (700 - 799)	700 25TH ST	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+152	1591997	Lerso	Truck	MISSION ST: 10TH ST to 11TH ST (1400 - 1499)	1450 MISSION ST	SUSPEND	Pernil Asado: Ropa Vieja: Arroz con Pollo: Cuban Sandwich: Croquetas Fritas: Tostones: Platanos Maduros: Yuca Frita
+153	1514025	F & C Catering	Truck	PENNSYLVANIA AVE: 22ND ST to 23RD ST (700 - 899)	898 PENNSYLVANIA AVE	EXPIRED	Cold Truck: Hot/Cold Sandwiches: Water: Soda: Juice: Snacks: Milk: Candies: Canned Food: Soups: Cup of Noodles: Fruit: Salad
+154	1535607	Wu Wei LLC dba MoBowl	Truck	WASHINGTON ST: THE EMBARCADERO to DRUMM ST (1 - 99)	370 DRUMM ST	EXPIRED	Various types of meat: veggie: and seafood bowls.
+155	963985	Singh Brothers Ice Cream	Truck	BANCROFT AVE: JENNINGS ST to KEITH ST (1500 - 1599)	1562 BANCROFT AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+156	1591846	Golden Gate Halal Food	Push Cart	MARKET ST: MASON ST \\ TURK ST to 06TH ST \\ GOLDEN GATE AVE \\ TAYLOR ST (943 - 999) -- SOUTH --	979 MARKET ST	SUSPEND	Pulao Plates & Sandwiches: Various Drinks
+157	963989	Singh Brothers Ice Cream	Truck	YOSEMITE AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1420 YOSEMITE AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+158	1163787	SOHOMEI, LLC	Truck	MASONIC AVE: MCALLISTER ST to FULTON ST (500 - 599)	500 MASONIC AVE	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+159	1163793	SOHOMEI, LLC	Truck	CESAR CHAVEZ ST: SOUTH VAN NESS AVE to CAPP ST \\ MISSION ST (3300 - 3398) -- NORTH --	3300 CESAR CHAVEZ ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+160	1022810	Serendipity SF	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	400 CALIFORNIA ST	ISSUED	Meatloaf: Grilled Cheese: Chicken Sandwich: Caprese Salad: Kale Salad: Fries: Sweet Potato Fries: Mac and Cheese: Mashed Potatoes
+161	1174531	CC Acquisition LLC	Push Cart	MARKET ST: 01ST ST \\ BUSH ST to 02ND ST (501 - 599) -- SOUTH --	525 MARKET ST	REQUESTED	Chai Tea
+162	963991	Singh Brothers Ice Cream	Truck	HARBOR RD: NORTHRIDGE RD to INGALLS ST (1 - 299)	297 HARBOR RD	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+163	1163794	SOHOMEI, LLC	Truck	MISSION ST: 07TH ST to ANGELOS ALY \\ JULIA ST (1100 - 1165)	1118 MISSION ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+164	1163791	SOHOMEI, LLC	Truck	CLAY ST: BATTERY ST to SANSOME ST (400 - 499)	432 CLAY ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+165	1153604	SPUNBYSS	Truck	02ND ST: TEHAMA ST to CLEMENTINA ST (224 - 273)	240 02ND ST	REQUESTED	American classic slider:  fried chicken slider: fried chicken skin: wedge cut fries: regular cut fries: handcrafted sodas: spring salad
+166	963998	Singh Brothers Ice Cream	Truck	PENINSULA AVE: BLANKEN AVE to LATHROP AVE (300 - 399)	360 PENINSULA AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+167	963995	Singh Brothers Ice Cream	Truck	KISKA RD: DORMITORY RD \\ KIRKWOOD AVE to REARDON RD (141 - 199)	195 KISKA RD	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+168	1090089	Tacos El Primo	Truck	QUINT ST: DAVIDSON AVE to EVANS AVE (300 - 399)	1700 EVANS AVE	REQUESTED	Mexican food: tacos: burritos: tortas: various meat and chicken and fish plate: chile relleno plate: fish plate: bread: flan: rice pudding: bread: fruit juice: vegetable juice: coffee: tea
+169	1163792	SOHOMEI, LLC	Truck	THOMAS MORE WAY: BROTHERHOOD WAY \\ CHUMASERO DR to SAN FRANCISCO GOLF CLUB RD (1 - 99)	1 THOMAS MORE WAY	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+170	963980	Singh Brothers Ice Cream	Truck	GRIFFITH ST: INGERSON AVE to JAMESTOWN AVE (2900 - 2999)	2900 GRIFFITH ST	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+171	1163783	SOHOMEI, LLC	Truck	PINE ST: POLK ST to VAN NESS AVE (1500 - 1599)	1540 PINE ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+201	1174530	CC Acquisition LLC	Push Cart	VALENCIA ST: 16TH ST to 17TH ST (500 - 599)	560 VALENCIA ST	REQUESTED	Chai Tea
+172	1199051	Munch India	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	400 CALIFORNIA ST	REQUESTED	Daily rotating menus consisting of various local & organic vegetable: poultry: meat: seafood : rice & bread dishes.
+173	963978	Singh Brothers Ice Cream	Truck	HOLLISTER AVE: HAWES ST to INGALLS ST (1000 - 1099)	1000 HOLLISTER AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+174	963979	Singh Brothers Ice Cream	Truck	INGERSON AVE: JENNINGS ST to 03RD ST (1100 - 1199)	1173 INGERSON AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+175	1090091	Tacos El Primo	Truck	JENNINGS ST: WALLACE AVE to YOSEMITE AVE (2200 - 2299)	1495 WALLACE AVE	REQUESTED	Mexican food: tacos: burritos: tortas: various meat and chicken and fish plate: chile relleno plate: fish plate: bread: flan: rice pudding: bread: fruit juice: vegetable juice: coffee: tea
+176	946047	The Huge Hotdog Concession	Truck	POLK ST: BUSH ST to AUSTIN ST \\ FRANK NORRIS ST (1300 - 1329)	1300 POLK ST	EXPIRED	Hotdogs: chips: soda: nuts: crackers
+177	1034228	Julie's Hot Dogs	\N	MISSION ST: 14TH ST to 15TH ST (1800 - 1899)	1850 MISSION ST	REQUESTED	Hot dogs: bacon wrap hot dogs: chicken burgers: energy drinks: water & various drinks
+178	934719	Santana ESG, Inc.	Truck	SANSOME ST: SUTTER ST to BUSH ST (1 - 99)	1 SANSOME ST	EXPIRED	Tacos: Burritos: Tortas: Quesadillas: Mexican Drinks: Aguas Frescas
+179	963984	Singh Brothers Ice Cream	Truck	DONNER AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1475 DONNER AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+180	1039786	Julie's Hot Dogs	\N	MISSION ST: 17TH ST to CLARION ALY (2100 - 2131)	2101 MISSION ST	REQUESTED	Hot dogs: bacon wrap hot dogs: chicken burgers: energy drinks: water & various drinks
+181	1213203	Marengo	Truck	WATERLOO ST: MARENGO ST to BAY SHORE BLVD (40 - 99)	75 WATERLOO ST	REQUESTED	Breakfast - egg: cheese: bacon: tomato: english muffin w/ butter: jam: or nutella: hard boiled eggs: fruit medley: water: coffee: milk: carrot juice: orange juice
+182	963997	Singh Brothers Ice Cream	Truck	NIBBI CT: GILLETTE AVE to END: 1-99 BLOCK (1 - 99)	35 NIBBI CT	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+183	948140	Eli's Hot Dogs	Push Cart	JERROLD AVE: BARNEVELD AVE to JERROLD AVE (2351 - 2369)	101 BAY SHORE BLVD	REQUESTED	various styles of hot dogs & sausages: chips: breakfast sandwiches: chili: soda: water:
+184	963988	Singh Brothers Ice Cream	Truck	PALOU AVE: HAWES ST to INGALLS ST (1100 - 1199)	1101 PALOU AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+185	1163784	SOHOMEI, LLC	Truck	VALENCIA ST: 18TH ST to 19TH ST (700 - 799)	740 VALENCIA ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+186	1200178	SF Cart Project	Truck	MISSION BAY BLVD SOUTH: 03RD ST \\ MISSION BAY BLVD to 04TH ST \\ MISSION BAY BLVD (501 - 599)	535 MISSION BAY BLVD SOUTH	EXPIRED	7 Multiple Trucks on rotation (1 on Mission Bay Blvd South & 6 on 4th St).   Serving everything but hot dogs
+187	949952	Santana ESG, Inc.	Truck	HARRISON ST: 21ST ST to 22ND ST (2500 - 2599)	2598 HARRISON ST	EXPIRED	Tacos: Burritos: Tortas: Quesadillas: Mexican Drinks: Aguas Frescas
+188	1163799	SOHOMEI, LLC	Truck	MASONIC AVE: MCALLISTER ST to FULTON ST (500 - 599)	599 MASONIC AVE	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+189	1163796	SOHOMEI, LLC	Truck	DAVIDSON AVE: QUINT ST to RANKIN ST (1500 - 1599)	1580 DAVIDSON AVE	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+190	963986	Singh Brothers Ice Cream	Truck	WALLACE AVE: JENNINGS ST to KEITH ST (1500 - 1599)	1550 WALLACE AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+191	1174517	CC Acquisition LLC	Push Cart	MARKET ST: MAIN ST to BEALE ST \\ DAVIS ST \\ PINE ST (214 - 298) -- NORTH --	298 MARKET ST	REQUESTED	Indian Chai (Tea)
+192	1058991	Ruru Juice LLC	Truck	MISSION ST: 02ND ST to NEW MONTGOMERY ST (600 - 634)	601 MISSION ST	REQUESTED	Smoothies: Juice: Salads: Fruit Bowls: Soup
+193	953001	Wonder Philly	Push Cart	04TH ST: BERRY ST to MISSION CREEK (900 - 999)	960 04TH ST	ISSUED	Hot dogs: sausages: cheesesteaks: chips: drinks
+194	963987	Singh Brothers Ice Cream	Truck	FITZGERALD AVE: HAWES ST to INGALLS ST (1100 - 1199)	1104 FITZGERALD AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+195	1163405	Julie's Hot Dogs	Truck	MISSION ST: 19TH ST to 20TH ST (2300 - 2399)	2365 MISSION ST	EXPIRED	Hot dogs: Bacon wrapped hot dogs: soda: water: sports drinks: energy drinks: chips
+196	1163788	SOHOMEI, LLC	Truck	MISSION ST: ANNIE ST to 03RD ST (663 - 699)	690 MISSION ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+197	959619	Kabob Trolley, LLC	Push Cart	04TH ST: TOWNSEND ST to KING ST (700 - 799)	298 KING ST	REQUESTED	Gyros: Kebobs: refreshments and dessert
+198	1219753	Kabob Trolley, LLC	Truck	MISSION ST: 07TH ST to ANGELOS ALY \\ JULIA ST (1100 - 1165)	1133 MISSION ST	REQUESTED	Halal Gyro and Cheesesteaks
+199	1090090	Tacos El Primo	Truck	WILLIAMS AVE: APOLLO ST to PHELPS ST \\ VESTA ST (300 - 399)	345 WILLIAMS AVE	REQUESTED	Mexican food: tacos: burritos: tortas: various meat and chicken and fish plate: chile relleno plate: fish plate: bread: flan: rice pudding: bread: fruit juice: vegetable juice: coffee: tea
+200	963994	Singh Brothers Ice Cream	Truck	INGALLS ST: GEORGE CT to OAKDALE AVE (1350 - 1399)	1309 INGALLS ST	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+202	953198	Santana ESG, Inc.	Truck	SHOTWELL ST: 16TH ST to 17TH ST (200 - 299)	200 SHOTWELL ST	EXPIRED	Tacos: Burritos: Tortas: Quesadillas: Mexican Drinks: Aguas Frescas
+203	1163786	SOHOMEI, LLC	Truck	02ND ST: FEDERAL ST to SOUTH PARK (519 - 548)	544 02ND ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+204	1042438	Ruru Juice LLC	Truck	SUTTER ST: SANSOME ST to MONTGOMERY ST (50 - 99)	80 SUTTER ST	REQUESTED	Smoothies: Juice: Salads: Fruit Bowls: Soup
+205	963983	Singh Brothers Ice Cream	Truck	JENNINGS ST: KEY AVE to LE CONTE AVE (3400 - 3499)	3444 JENNINGS ST	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+206	1297766	Tacos Lol-Tun	Truck	ARMSTRONG AVE: KEITH ST to 03RD ST (1600 - 1699)	1610 ARMSTRONG AVE	EXPIRED	Tortas: burritos: tacos: ensaladas: sodas
+207	1089697	El Tonayense #60	Truck	HARRISON ST: 17TH ST to MARIPOSA ST (2050 - 2149)	401 TREAT AVE	REQUESTED	Tacos: Burritos: Tortas: Quesadillas: Drinks
+208	1163797	SOHOMEI, LLC	Truck	BURKE AVE: START: 1500-1599 BLOCK to 03RD ST (1500 - 1599)	1570 BURKE AVE	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+209	1163801	SOHOMEI, LLC	Truck	ELLIS ST: LARKIN ST to POLK ST (700 - 799)	730 ELLIS ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+210	1163795	SOHOMEI, LLC	Truck	MINNESOTA ST: 23RD ST to 24TH ST (1200 - 1299)	1240 MINNESOTA ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+211	1163789	SOHOMEI, LLC	Truck	02ND ST: JESSIE ST to MISSION ST (69 - 99)	85 02ND ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+212	963990	Singh Brothers Ice Cream	Truck	JENNINGS ST: VAN DYKE AVE to WALLACE AVE (2100 - 2199)	2115 JENNINGS ST	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+213	963981	Singh Brothers Ice Cream	Truck	JAMESTOWN AVE: GRIFFITH ST to CORONADO ST (800 - 850)	800 JAMESTOWN AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+214	1163798	SOHOMEI, LLC	Truck	HOWARD ST: 01ST ST to MALDEN ALY (500 - 589)	501 HOWARD ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+215	963996	Singh Brothers Ice Cream	Truck	KIRKWOOD AVE: NEWHALL ST to PHELPS ST (1600 - 1699)	1698 KIRKWOOD AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+216	1163800	SOHOMEI, LLC	Truck	22ND ST: SAN BRUNO AVE to UTAH ST (2400 - 2449)	2401 22ND ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+217	963993	Singh Brothers Ice Cream	Truck	SHAFTER AVE: HAWES ST to INGALLS ST (1200 - 1299)	1207 SHAFTER AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+218	1163785	SOHOMEI, LLC	Truck	EDDY ST: STEINER ST to PIERCE ST (1600 - 1699)	1652 EDDY ST	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+219	1090081	El Tonayanse #4 / #36	Truck	HARRISON ST: 13TH ST to 14TH ST (1700 - 1799)	1717 HARRISON ST	REQUESTED	Tacos: Burritos: Tortas: Quesadillas
+220	963982	Singh Brothers Ice Cream	Truck	KEY AVE: JENNINGS ST to 03RD ST (1000 - 1068)	1060 KEY AVE	REQUESTED	Ice Cream: Pre-Packaged Chips: Candies: Bottled Water & Canned SODA
+221	1163790	SOHOMEI, LLC	Truck	TREAT AVE: DIVISION ST \\ FLORIDA ST to ALAMEDA ST (1 - 99)	Assessors Block 3902/Lot002	REQUESTED	COLD TRUCK. Deli: bbq chicken skewer: Chinese spring roll: Chinese fried rice/noodle: fried chicken leg/wing: bbq chicken sandwich: chicken cheese burger: burrito: lumpia. Snack: sunflower seeds: muffins: chips: snickers: kit-kat: 10 types of chocolate. Drinks: Coke: 7-Up: Dr. Pepper: Pepsi: Redbull: Vitamin Water: Rockstar: Coconut Juice: Water. Hot drinks: coffee: tea.
+222	1591818	Rita's Catering	Truck	MISSION ST: 06TH ST to 07TH ST (1000 - 1099)	1028 MISSION ST	SUSPEND	Filipino Food
+223	1591810	Flavors of Africa	Truck	HOWARD ST: FREMONT ST to 01ST ST (400 - 499)	405 HOWARD ST	SUSPEND	Meat and vegi rice bowls: meat and vegi salad bowls: meat and vegi wraps: drinks and juices.
+224	1591786	Faith Sandwich	Push Cart	MAIN ST: MARKET ST to MISSION ST (1 - 99)	58 MAIN ST	SUSPEND	BBQ PORK SANDWICHGRILL CHICKEN SANDWICHSHIRMP SPRING ROLLSBBQ PORK OVER RICEGRILL CHICKEN OVER RICEBBQ PORK VERMICELLIGRILL CHICKEN VERMICELLIBBQ PORK GARLIC NOODLEGRILL CHICKEN GARLIC NOODLENEW ITEMS:MASALA DOSAPANNER DOSACHICKEN CURRY & RICECHICKEN STEWRICE OR DOSAADD CHEESEADD GHEE
+318	1534033	Off the Grid Services, LLC	\N	MINNA ST: SHAW ALY to 02ND ST (44 - 99)	65 MINNA ST	REQUESTED	N/A
+225	1591811	Flavors of Africa	Truck	MISSION ST: SHAW ALY to ANTHONY ST (543 - 586)	555 MISSION ST	SUSPEND	Meat and vegi rice bowls: meat and vegi salad bowls: meat and vegi wraps: drinks and juices.
+226	1591783	FRUITYMANIA	Push Cart	MARKET ST: 04TH ST \\ ELLIS ST \\ STOCKTON ST to POWELL ST (800 - 890) -- NORTH --	870 MARKET ST	SUSPEND	Fruit Salads: Fruit Drinks: Can Soda: Water
+227	755221	Fruteria Serrano	\N	MISSION ST: OCEAN AVE to PERSIA AVE (4650 - 4699)	4650 MISSION ST	REQUESTED	Fruits including mangoes: pineapples: coconuts: watermelon: corn: cucumber: potatoes chips: water: Mexican drinks: sodas: juices: snow cones
+228	1337787	Giant Burrito	Truck	GENEVA AVE: PRAGUE ST to LINDA VISTA STPS (1500 - 1598) -- SOUTH --	1500 GENEVA AVE	REQUESTED	Tacos: Burritos: Tostadas: Flautas: Tostadas: Tortas: Pozole Menudo
+229	1591781	Street Meet	Truck	MINNESOTA ST: 04TH ST \\ MARIPOSA ST to 18TH ST (500 - 599)	777 MARIPOSA ST	SUSPEND	Tacos: burritos: quesadillas: tortas: asada fries: nachos
+230	1332947	Mini Mobile Food Catering	Truck	KANSAS ST: CESAR CHAVEZ ST to MARIN ST (1600 - 1699)	Assessors Block 4341/Lot001	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+231	1591787	Faith Sandwich	Push Cart	MISSION ST: SHAW ALY to ANTHONY ST (543 - 586)	560 MISSION ST	SUSPEND	BBQ PORK SANDWICHGRILL CHICKEN SANDWICHSHIRMP SPRING ROLLSBBQ PORK OVER RICEGRILL CHICKEN OVER RICEBBQ PORK VERMICELLIGRILL CHICKEN VERMICELLIBBQ PORK GARLIC NOODLEGRILL CHICKEN GARLIC NOODLENEW ITEMS:MASALA DOSAPANNER DOSACHICKEN CURRY & RICECHICKEN STEWRICE OR DOSAADD CHEESEADD GHEE
+232	1591832	Shah's Halal Food	Push Cart	MARKET ST: BATTERY ST to SUTTER ST (540 - 558) -- NORTH --	532 MARKET ST	SUSPEND	Chicken Gyro: Lamb Gyro: Chiken Gyro Plate: Lamb Gyro Plate: Combination Gyro Plate.
+233	1367290	Star Taco	\N	HOWARD ST: MALDEN ALY to 02ND ST (574 - 599)	580 HOWARD ST	REQUESTED	Mexican Food
+234	1591784	FRUITYMANIA	Push Cart	MARKET ST: 04TH ST \\ ELLIS ST \\ STOCKTON ST to POWELL ST (801 - 863) -- SOUTH --	801 MARKET ST	SUSPEND	Fruit Salads: Fruit Drinks: Can Soda: Water
+235	1336732	Quan Catering	Truck	03RD ST: 25TH ST to 26TH ST (2900 - 2998) -- WEST --	2920 03RD ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+236	934518	Scotch Bonnet	Truck	SANSOME ST: BUSH ST to PINE ST (100 - 199)	115 SANSOME ST	EXPIRED	Jerk chicken: curry chicken: curry goat: curry dhal: Burritos: Fish: Ox tails: rice: beans: veggies.
+237	1341056	Kettle Corn Star	Push Cart	MARKET ST: YERBA BUENA LN to 04TH ST \\ ELLIS ST \\ STOCKTON ST (767 - 799) -- SOUTH --	773 MARKET ST	EXPIRED	Kettle Corn: Funnel Cakes: Lemonade: Beverages: Flan: Hot Dogs: Falafel: Hot and Cold Sandwiches: French Fries: Baklava and Pastries
+238	1336744	Quan Catering	Truck	LANE ST: VAN DYKE AVE to 03RD ST (2100 - 2199)	2111 LANE ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+239	1337439	Liang Bai Ping	Truck	WALLACE AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1450 WALLACE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+240	1658695	Bonito Poke	Truck	HOWARD ST: FREMONT ST to 01ST ST (400 - 499)	400 HOWARD ST	REQUESTED	Bonito Poke Bowls & Various Drinks
+241	812017	SF Street Food	Truck	SUTTER ST: CLAUDE LN to GRANT AVE (216 - 299)	290 SUTTER ST	REQUESTED	Chicken Tikka Masala: Vegetarian Rice Plate: Burritos: Tacos: Mango Lassi
+242	1658694	Bonito Poke	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	430 CALIFORNIA ST	REQUESTED	Bonito Poke Bowls & Various Drinks
+243	1416733	Off the Grid Services, LLC	Truck	SANSOME ST: SUTTER ST to BUSH ST (1 - 99)	1 BUSH ST	REQUESTED	\N
+244	1344202	Bay Area Dots, LLC	Push Cart	BEACH ST: HYDE ST to LARKIN ST (700 - 799)	900 BEACH ST	REQUESTED	Hot dogs: condiments: soft pretzels: soft drinks: coffee:cold beverages: pastries: bakery goods: cookies: icecream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+245	1658679	The New York Frankfurter Co. of CA, Inc. DBA: Annie's Hot Dogs	Push Cart	MARKET ST: 04TH ST \\ ELLIS ST \\ STOCKTON ST to POWELL ST (800 - 890) -- NORTH --	870 MARKET ST	APPROVED	Soft pretzels: hot dogs: sausages: chips: popcorn: soda: espresso: cappucino: pastry: ica cream: ices: italian sausage: shish-ka-bob: churros: juice: water: various drinks
+246	1658691	Bonito Poke	Truck	HOWARD ST: FREMONT ST to 01ST ST (400 - 499)	400 HOWARD ST	APPROVED	Bonito Poke Bowls & Various Drinks
+247	1337428	Liang Bai Ping	Truck	REVERE AVE: GRIFFITH ST to CRISP RD (1100 - 1188)	1145 REVERE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+248	1658689	Bonito Poke	Truck	01ST ST: HOWARD ST to TEHAMA ST (200 - 231)	505 HOWARD ST	APPROVED	Bonito Poke Bowls & Various Drinks
+249	1658692	Bonito Poke	Truck	ILLINOIS ST: 16TH ST to MARIPOSA ST \\ TERRY A FRANCOIS BLVD (400 - 599)	409 ILLINOIS ST	APPROVED	Bonito Poke Bowls & Various Drinks
+250	1359707	Union Square Business Improvement District	Truck	MAIDEN LN: GRANT AVE to STOCKTON ST (100 - 199)	Assessors Block /Lot	REQUESTED	All types of food except for BBQ on site per fire safety. Partnership with Off the Grid and their fleet of MFF's
+251	1265606	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	POST ST: STOCKTON ST to POWELL ST (300 - 399)	384 POST ST	REQUESTED	American Food: Hot dogs: pretzels: ice cream: salads: beverages: sandwiches: soup: coffee: pastries:etc.
+252	1527317	BOWL'D ACAI, LLC.	Truck	NORTH POINT ST: LAGUNA ST to BUCHANAN ST (1500 - 1599)	15 MARINA BLVD	REQUESTED	Acai Bowls: Poke Bowls: Smoothies: Juices
+253	1334599	Tacos El Ojo De Agua	Truck	03RD ST: SOUTH PARK to VARNEY PL (548 - 586)	551 03RD ST	EXPIRED	Tacos: Burritos: Tortas: Quesadillas: Salads: Soup: Fruits: Juices: Soda: Water
+254	1337431	Liang Bai Ping	Truck	SHAFTER AVE: GRIFFITH ST to HAWES ST (1100 - 1199)	1127 SHAFTER AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+255	1332938	Mini Mobile Food Catering	Truck	BERRY ST: 06TH ST to KING ST (400 - 431)	420 BERRY ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+256	1336739	Quan Catering	Truck	BRANNAN ST: HARRIET ST to LUCERNE ST (715 - 743)	722 BRANNAN ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+257	955616	Tacos Santo Toribio	Truck	TOLAND ST: NEWCOMB AVE to OAKDALE AVE (900 - 999)	928 TOLAND ST	REQUESTED	tacos
+258	1336731	Quan Catering	Truck	\N	3305 03RD ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+259	848185	Reecees Soulicious	Truck	03RD ST: NEWCOMB AVE to OAKDALE AVE (4701 - 4799) -- EAST --	4705 03RD ST	REQUESTED	Fried Chicken: Fried Fish: Greens: Mac & Cheese: Peach Cobbler: and String beans
+260	848080	Taqueria Lolita	Truck	RANKIN ST: DAVIDSON AVE to EVANS AVE (200 - 299)	1700 EVANS AVE	SUSPEND	Tacos: burritos: quesadillas: combination plates: tortas: tostadas
+261	1010174	Julie's Hot Dogs	Truck	MISSION ST: 19TH ST to 20TH ST (2300 - 2399)	2386 MISSION ST	REQUESTED	Hot dogs: bacon-wrapped hot dogs: chicken burgers: energy drinks: water and various other drinks.
+262	1265597	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	POST ST: STOCKTON ST to POWELL ST (300 - 399)	Assessors Block /Lot	REQUESTED	American Food: Hot dogs: pretzels: ice cream: salads: beverages: sandwiches: soup: coffee: pastries:etc.
+263	627558	Off the Grid Services, LLC	Truck	DAVIS ST: DAVIS CT \\ JACKSON ST to BROADWAY (500 - 699)	Assessors Block /Lot	REQUESTED	varies truck to truck
+264	1337442	Liang Bai Ping	Truck	YOSEMITE AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1420 YOSEMITE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+265	1337450	Liang Bai Ping	Truck	FELL ST: BRODERICK ST to BAKER ST (1300 - 1399)	1377 FELL ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+266	1336730	Quan Catering	Truck	02ND ST: HOWARD ST to TEHAMA ST (200 - 227)	222 02ND ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+267	1332937	Mini Mobile Food Catering	Truck	BERRY ST: 05TH ST to 06TH ST (300 - 399)	355 BERRY ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+268	364218	The Chai Cart	Push Cart	NEW MONTGOMERY ST: AMBROSE BIERCE ST to MISSION ST (77 - 99)	79 NEW MONTGOMERY ST	SUSPEND	Hot Indian Chai (Tea)
+269	931093	Swell Cream & Coffee	Truck	TARAVAL ST: 36TH AVE to SUNSET BLVD (2600 - 2649)	2401 36TH AVE	REQUESTED	Ice cream: coffee: pastries
+270	1336736	Quan Catering	Truck	CESAR CHAVEZ ST: CONNECTICUT ST to EVANS AVE (1900 - 2099)	2190 CESAR CHAVEZ ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+271	1337430	Liang Bai Ping	Truck	REVERE AVE: GRIFFITH ST to CRISP RD (1100 - 1188)	1135 REVERE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+272	1658678	The New York Frankfurter Co. of CA, Inc. DBA: Annie's Hot Dogs	Push Cart	STOCKTON ST: 04TH ST \\ ELLIS ST \\ MARKET ST intersection	800 MARKET ST	APPROVED	Soft pretzels: hot dogs: sausages: chips: popcorn: sodea: coffee: espresso: cappucino: pastries: ice cream: Italian sausages: shish-ka-bob: churros: juice: water: various drinks.
+273	997504	Munch India	Truck	POST ST: MONTGOMERY ST to LICK PL (1 - 40)	Assessors Block /Lot	REQUESTED	Daily rotating menus consisting of various local & organic vegetable: poultry: meat: seafood : rice & bread dishes.
+274	1337429	Liang Bai Ping	Truck	REVERE AVE: GRIFFITH ST to CRISP RD (1100 - 1188)	1160 REVERE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+275	1332944	Mini Mobile Food Catering	Truck	HARRISON ST: BEALE ST to FREMONT ST \\ I-80 W OFF RAMP (300 - 399)	355 FREMONT ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+276	1337455	Liang Bai Ping	Truck	JENNINGS ST: VAN DYKE AVE to WALLACE AVE (2100 - 2199)	2115 JENNINGS ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+277	1337441	Liang Bai Ping	Truck	YOSEMITE AVE: HAWES ST to INGALLS ST (1300 - 1399)	1335 YOSEMITE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+278	1332941	Mini Mobile Food Catering	Truck	FOLSOM ST: 12TH ST to 13TH ST (1600 - 1699)	1690 FOLSOM ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+279	1336729	Quan Catering	Truck	SELBY ST: HUDSON AVE to INNES AVE (500 - 599)	500 SELBY ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+280	751253	Pipo's Grill	Truck	FOLSOM ST: 14TH ST to 15TH ST (1800 - 1899)	1800 FOLSOM ST	REQUESTED	Tacos: Burritos: Hot Dogs: and Hamburgers
+281	1336738	Quan Catering	Truck	BEALE ST: HARRISON ST to BRYANT ST \\ DELANCEY ST (400 - 499)	400 BEALE ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+282	1332940	Mini Mobile Food Catering	Truck	11TH ST: FOLSOM ST to HARRISON ST (300 - 399)	355 11TH ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+283	773095	Athena SF Gyro	Push Cart	MARKET ST: 11TH ST intersection	10 SOUTH VAN NESS AVE	REQUESTED	Gyro pita bread (Lamb or chicken): lamb over rice: chicken over rice: chicken biryani rice: soft drinks
+284	1552671	Izzy's Cheesesteaks	Truck	BATTERY ST: CALIFORNIA ST to HALLECK ST (200 - 230)	255 BATTERY ST	REQUESTED	Cheesesteaks: French Fries: and Drinks
+285	1658696	Bonito Poke	Truck	ILLINOIS ST: 16TH ST to MARIPOSA ST \\ TERRY A FRANCOIS BLVD (400 - 599)	409 ILLINOIS ST	REQUESTED	Bonito Poke Bowls & Various Drinks
+286	934552	Casey's Pizza, LLC	Truck	MISSION ST: NEW MONTGOMERY ST to ANNIE ST (635 - 664)	654 MISSION ST	EXPIRED	Artisan Pizzas (Margherita: Yukon Potato: Zoe's Pepperoni: Funghi: Brocolli Rabe: Bacon Kale:  Arugula) and Drinks.
+287	1337440	Liang Bai Ping	Truck	WALLACE AVE: JENNINGS ST to KEITH ST (1500 - 1599)	1500 WALLACE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+288	1337432	Liang Bai Ping	Truck	THOMAS AVE: GRIFFITH ST to HAWES ST (1100 - 1199)	1180 THOMAS AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+289	1336735	Quan Catering	Truck	CESAR CHAVEZ ST: INDIANA ST to IOWA ST (1300 - 1399)	1301 CESAR CHAVEZ ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+290	934517	Scotch Bonnet	Truck	MONTGOMERY ST: POST ST to SUTTER ST (1 - 99)	25 MONTGOMERY ST	EXPIRED	Jerk chicken: curry chicken: curry goat: curry dhal: Burritos: Fish: Ox tails: rice: beans: veggies.
+291	1089427	Halal Food	Push Cart	CALIFORNIA ST: DRUMM ST to DAVIS ST (1 - 99)	50 CALIFORNIA ST	REQUESTED	rice chicken beef hot dogs and sandwich's and coke and water
+292	934554	Casey's Pizza, LLC	Truck	SPEAR ST: MISSION ST to HOWARD ST (100 - 199)	100 SPEAR ST	EXPIRED	Artisan Pizzas (Margherita: Yukon Potato: Zoe's Pepperoni: Funghi: Brocolli Rabe: Bacon Kale:  Arugula) and Drinks.
+293	934551	Casey's Pizza, LLC	Truck	FELL ST: GOUGH ST to OCTAVIA ST (300 - 399)	368 FELL ST	EXPIRED	Artisan Pizzas (Margherita: Yukon Potato: Zoe's Pepperoni: Funghi: Brocolli Rabe: Bacon Kale:  Arugula) and Drinks.
+294	1337448	Liang Bai Ping	Truck	DONNER AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1475 CARROLL AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+295	934555	Casey's Pizza, LLC	Truck	SANSOME ST: PINE ST to CALIFORNIA ST (200 - 299)	231 SANSOME ST	EXPIRED	Artisan Pizzas (Margherita: Yukon Potato: Zoe's Pepperoni: Funghi: Brocolli Rabe: Bacon Kale:  Arugula) and Drinks.
+296	1337436	Liang Bai Ping	Truck	UNDERWOOD AVE: INGALLS ST to JENNINGS ST (1300 - 1399)	1351 UNDERWOOD AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+297	1332948	Mini Mobile Food Catering	Truck	LOOMIS ST: FLOWER ST to WATERLOO ST (120 - 255)	491 BAY SHORE BLVD	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+298	1337427	Liang Bai Ping	Truck	QUESADA AVE: ARELIOUS WALKER DR to GRIFFITH ST (1000 - 1099)	1031 QUESADA AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+299	1337453	Liang Bai Ping	Truck	GRIFFITH ST: SHAFTER AVE to THOMAS AVE (1500 - 1599)	1515 GRIFFITH ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+300	773105	Athena SF Gyro	Push Cart	08TH ST: BRANNAN ST to TOWNSEND ST (600 - 699)	699 08TH ST	REQUESTED	Gyro pita bread (Lamb or chicken): lamb over rice: chicken over rice: chicken biryani rice: soft drinks
+301	839523	Halal Cart of San Francisco	Push Cart	MARKET ST: FREMONT ST \\ FRONT ST to 01ST ST \\ BUSH ST (400 - 498) -- NORTH --	1 FRONT ST	REQUESTED	Gyro; Chicken over rice; Gyro over rice;
+302	837171	Chilifruit	Push Cart	24TH ST: MISSION ST to OSAGE ALY (3300 - 3322)	Assessors Block /Lot	REQUESTED	Mangoneadas: Fruit snacks: Chamoyadas: Bionicos
+303	1336733	Quan Catering	Truck	03RD ST: ARTHUR AVE \\ CARGO WAY to BURKE AVE (3401 - 3499) -- EAST --	3433 03RD ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+304	1336921	Kettle Corn Star	Push Cart	MARKET ST: POWELL ST to 05TH ST \\ CYRIL MAGNIN ST (865 - 899) -- SOUTH --	865 MARKET ST	EXPIRED	Kettle Corn: Funnel Cakes: Waffles: Lemonade
+305	1265569	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	POWELL ST: GEARY ST to POST ST (300 - 399)	331 POWELL ST	REQUESTED	American Food: Hot dogs: pretzels: ice cream: salads: beverages: sandwiches: soup: coffee: pastries:etc.
+306	1336734	Quan Catering	Truck	ALABAMA ST: TREAT AVE to 15TH ST (201 - 212)	201 ALABAMA ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+307	1337443	Liang Bai Ping	Truck	YOSEMITE AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1430 YOSEMITE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+308	1337456	Liang Bai Ping	Truck	MAIN ST: FOLSOM ST to HARRISON ST (300 - 399)	201 FOLSOM ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+309	1337451	Liang Bai Ping	Truck	FREMONT ST: NATOMA ST to HOWARD ST (170 - 199)	Assessors Block 3720/Lot001	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+310	839524	Halal Cart of San Francisco	Push Cart	MARKET ST: 01ST ST \\ BUSH ST to 02ND ST (501 - 599) -- SOUTH --	555 MARKET ST	REQUESTED	Gyro; Chicken over rice; Gyro over rice;
+311	1544281	Boulangerie La Camionnette	\N	FLORIDA ST: MARIPOSA ST to 18TH ST (500 - 599)	500 FLORIDA ST	REQUESTED	Bread: Pastries: Coffee: Pizza
+312	1340418	Let's Be Frank	Push Cart	LINDEN ST: GOUGH ST to OCTAVIA ST (300 - 399)	404 OCTAVIA ST	EXPIRED	Hot dogs and chili
+313	1141511	Khalid M Malik	Push Cart	BATTERY ST: MARKET ST to BUSH ST (1 - 10)	Assessors Block /Lot	REQUESTED	chicken sandwich: chicken gyro: chicken biryani
+314	1047771	The Chef Station	\N	DIVISADERO ST: OAK ST to FELL ST (401 - 499) -- WEST --	425 DIVISADERO ST	REQUESTED	South American Peruvian Food - Ceiches: hot wok dishes: hot pastas: rice dishes: and Tapas.
+315	1332936	Mini Mobile Food Catering	Truck	ALAMEDA ST: HAMPSHIRE ST to BRYANT ST (2400 - 2599)	Assessors Block 3905/Lot011	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+316	1337435	Liang Bai Ping	Truck	UNDERWOOD AVE: INGALLS ST to JENNINGS ST (1300 - 1399)	1389 UNDERWOOD AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+317	934519	Scotch Bonnet	Truck	CALIFORNIA ST: SANSOME ST to LEIDESDORFF ST (400 - 448)	430 CALIFORNIA ST	EXPIRED	Jerk chicken: curry chicken: curry goat: curry dhal: Burritos: Fish: Ox tails: rice: beans: veggies.
+319	1337449	Liang Bai Ping	Truck	DONNER AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1450 DONNER AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+320	1337452	Liang Bai Ping	Truck	GRIFFITH ST: QUESADA AVE to REVERE AVE (1300 - 1399)	1300 GRIFFITH ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+321	1332945	Mini Mobile Food Catering	Truck	HARRISON ST: FREMONT ST \\ I-80 W OFF RAMP to 01ST ST \\ I-80 E ON RAMP (400 - 499)	401 HARRISON ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+322	1337444	Liang Bai Ping	Truck	BANCROFT AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1440 BANCROFT AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+323	1337438	Liang Bai Ping	Truck	VAN DYKE AVE: INGALLS ST to JENNINGS ST (1300 - 1399)	1337 VAN DYKE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+324	1332935	Mini Mobile Food Catering	Truck	01ST ST: CLEMENTINA ST to FOLSOM ST (245 - 299)	245 01ST ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+325	1336740	Quan Catering	Truck	BRYANT ST: 04TH ST \\ I-80 E OFF RAMP to 05TH ST \\ I-80 E ON RAMP (600 - 699)	645 BRYANT ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+326	812018	SF Street Food	Truck	MISSION ST: ANNIE ST to 03RD ST (663 - 699)	667 MISSION ST	REQUESTED	Chicken Tikka Masala: Vegetarian Rice Plate: Burritos: Tacos: Mango Lassi
+327	931094	Swell Cream & Coffee	Truck	TARAVAL ST: 34TH AVE to 35TH AVE (2400 - 2499)	2450 TARAVAL ST	REQUESTED	Ice cream: coffee: pastries
+328	1336742	Quan Catering	Truck	CALIFORNIA ST: DRUMM ST to DAVIS ST (1 - 99)	50 CALIFORNIA ST	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+329	1265607	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	GEARY ST: STOCKTON ST to POWELL ST (200 - 299)	Assessors Block /Lot	REQUESTED	American Food: Hot dogs: pretzels: ice cream: salads: beverages: sandwiches: soup: coffee: pastries:etc.
+330	1332943	Mini Mobile Food Catering	Truck	FREMONT ST: FOLSOM ST to HARRISON ST \\ I-80 W OFF RAMP (300 - 399)	350 FREMONT ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+331	1332949	Mini Mobile Food Catering	Truck	MENDELL ST: GALVEZ AVE to HUDSON AVE (600 - 699)	620 MENDELL ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+332	840504	Taqueria Lolita	Truck	EVANS AVE: QUINT ST to RANKIN ST (1700 - 1799)	750 PHELPS ST	SUSPEND	Tacos: burritos: quesadillas: combination plates: tortas: tostadas
+333	1337437	Liang Bai Ping	Truck	VAN DYKE AVE: INGALLS ST to JENNINGS ST (1300 - 1399)	1370 VAN DYKE AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+334	1336743	Quan Catering	Truck	ALANA WAY: COUNTY LINE intersection	151 EXECUTIVE PARK BLVD	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+335	1337433	Liang Bai Ping	Truck	THOMAS AVE: HAWES ST to INGALLS ST (1200 - 1299)	1212 THOMAS AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+336	1336737	Quan Catering	Truck	BAY SHORE BLVD: VISITACION AVE to SUNNYDALE AVE (2501 - 2599) -- EAST --	2555 BAY SHORE BLVD	EXPIRED	Cold Truck: Soft drinks: cup cakes: potato chips: cookies: gum: sandwiches (hot & cold): peanuts: muffins: coff (hot & cold): water: juice: yoplait: milk: orange juice: sunflower seeds: can foods: burritos: buscuits: chimichangas: rice krispies
+337	1351263	Isidoro Serrano	Push Cart	21ST ST: CAPP ST to MISSION ST (3150 - 3199)	2501 MISSION ST	EXPIRED	\N
+338	735315	Ziaurehman Amini	Push Cart	DRUMM ST: MARKET ST to CALIFORNIA ST (1 - 6)	1 CALIFORNIA ST	REQUESTED	\N
+339	1337445	Liang Bai Ping	Truck	BANCROFT AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1460 BANCROFT AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+340	1337446	Liang Bai Ping	Truck	BANCROFT AVE: JENNINGS ST to KEITH ST (1500 - 1599)	1555 BANCROFT AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+341	1344203	Bay Area Dots, LLC	Push Cart	TAYLOR ST: BAY ST intersection	567 BAY ST	REQUESTED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+342	1337454	Liang Bai Ping	Truck	HAWES ST: SHAFTER AVE to THOMAS AVE (1500 - 1599)	1153 SHAFTER AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+343	1400796	El Calamar Perubian Food Truck	Truck	24TH ST: UTAH ST to POTRERO AVE (2600 - 2699)	2615 24TH ST	REQUESTED	Lomo Saltado: Jalea: Ceviche: Calamari Tilapia Plates: Chicken: Soda: Water.
+344	1340417	Let's Be Frank	Push Cart	HAYES ST: GOUGH ST to OCTAVIA ST (400 - 499)	425 HAYES ST	EXPIRED	Hot dogs and chili
+345	1447794	Street Meet	Truck	HOWARD ST: 01ST ST to MALDEN ALY (500 - 589)	564 HOWARD ST	REQUESTED	Tortas: Burritos: Tacos: Churros: Nachos: Asada Fries
+346	1332946	Mini Mobile Food Catering	Truck	16TH ST: OWENS ST to 07TH ST \\ MISSISSIPPI ST (700 - 899)	701 16TH ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+347	934553	Casey's Pizza, LLC	Truck	POST ST: MONTGOMERY ST to LICK PL (1 - 40)	1 POST ST	EXPIRED	Artisan Pizzas (Margherita: Yukon Potato: Zoe's Pepperoni: Funghi: Brocolli Rabe: Bacon Kale:  Arugula) and Drinks.
+348	1332939	Mini Mobile Food Catering	Truck	08TH ST: HERON ST to HARRISON ST (350 - 399)	350 08TH ST	EXPIRED	Cold Truck: Corn Dogs: Noodle Soups: Candy: Pre-packaged Snacks: Sandwiches: Chips: Coffee: Tea: Various Beverages
+349	1337434	Liang Bai Ping	Truck	THOMAS AVE: HAWES ST to INGALLS ST (1200 - 1299)	1265 THOMAS AVE	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+350	1337447	Liang Bai Ping	Truck	BEALE ST: FOLSOM ST to HARRISON ST (300 - 399)	300 BEALE ST	EXPIRED	Cold Truck: Pre-packaged sandwiches: snacks: fruit: various beverages
+351	1337786	Giant Burrito	Truck	BAY SHORE BLVD: FLOWER ST to CORTLAND AVE (341 - 489) -- EAST --	353 BAY SHORE BLVD	REQUESTED	Tacos: Burritos: Tostadas: Flautas: Tostadas: Tortas: Pozole Menudo
+352	1611740	Kid Abelha - Brazilian Hamburgers	Truck	NAPOLEON ST: EVANS AVE \\ TOLAND ST to JERROLD AVE (25 - 299)	125 NAPOLEON ST	APPROVED	Brazilian Hamburgers
+353	1611739	Kid Abelha - Brazilian Hamburgers	Truck	NAPOLEON ST: EVANS AVE \\ TOLAND ST to JERROLD AVE (25 - 299)	2045 EVANS AVE	APPROVED	Brazilian Hamburgers
+354	1656405	San Francisco Taco Truck	Truck	WILLIAMS AVE: VENUS ST to APOLLO ST (250 - 331)	345 WILLIAMS AVE	REQUESTED	Tacos: Tortas: Burritos
+355	1656382	San Francisco Taco Truck	Truck	WILLIAMS AVE: APOLLO ST to PHELPS ST \\ VESTA ST (300 - 399)	345 WILLIAMS AVE	REQUESTED	Tacos: Tortas: Burritos
+356	1657803	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	GEARY ST: GRANT AVE to STOCKTON ST (100 - 199)	100 GEARY ST	APPROVED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+357	1657805	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	POST ST: STOCKTON ST to POWELL ST (300 - 399)	345 STOCKTON ST	APPROVED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+358	1657809	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	GEARY ST: STOCKTON ST to POWELL ST (200 - 299)	251 GEARY ST	APPROVED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+359	1657804	San Francisco Carts & Concessions, Inc. DBA Stanley's Steamers Hot Dogs	Push Cart	GEARY ST: STOCKTON ST to POWELL ST (200 - 299)	233 GEARY ST	APPROVED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+360	1658319	Senor Sisig	Truck	ELLIS ST: POWELL ST to CYRIL MAGNIN ST (100 - 148)	120 ELLIS ST	APPROVED	Filipino fusion food: taco: burrito: nachos: rice plates
+361	1658395	CARDONA'S FOOD TRUCK	Truck	MISSION ST: 14TH ST to 15TH ST (1800 - 1899)	1800 MISSION ST	APPROVED	Tacos: Burritos: Quesadillas: Various Drinks
+362	1658387	BH & MT LLC	Truck	OTIS ST: GOUGH ST \\ MCCOPPIN ST to 13TH ST \\ DUBOCE AVE \\ HWY 101 NORTHBOUND RAMP \\ MISSION ST (100 - 199)	170 OTIS ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+363	1658396	CARDONA'S FOOD TRUCK	Truck	MISSION ST: 14TH ST to 15TH ST (1800 - 1899)	1888 MISSION ST	APPROVED	Tacos: Burritos: Quesadillas: Various Drinks
+364	1658358	Roadside Rotisserie Corporation / Country Grill	Truck	FRONT ST: BROADWAY to VALLEJO ST (800 - 899)	90 BROADWAY	APPROVED	Rotisserie Chicken: Ribs: Kickass Salad: Potatos w/fat dripping: chicken wrap.
+365	1658332	Roadside Rotisserie Corporation / Country Grill	Truck	POST ST: MONTGOMERY ST to LICK PL (1 - 40)	1 POST ST	APPROVED	Rotisserie chicken: pork loin: ribs: chicken salad wrap: potatoes: roasted seasonal vegetables kale salad: beverages.
+366	1658320	Senor Sisig	Truck	FRONT ST: BROADWAY to VALLEJO ST (800 - 899)	90 BROADWAY	APPROVED	Various menu items & drinks
+367	1658363	Treats by the Bay LLC	Truck	HOWARD ST: MALDEN ALY to 02ND ST (574 - 599)	201 02ND ST	APPROVED	Prepackaged Kettlecorn
+368	1658338	San Pancho's Tacos	Truck	CAPITOL AVE: DE MONTFORT AVE to OCEAN AVE (1200 - 1299)	1271 CAPITOL AVE	APPROVED	Tacos: Burritos: Quesadillas: Tortas: Nachos: Hot Dogs:Soda: Water: Fruit Drinks
+369	1658322	Senor Sisig	Truck	10TH ST: FELL ST \\ MARKET ST \\ POLK ST to STEVENSON ST (1 - 18)	8 10TH ST	APPROVED	Senor Sisig: Filipino fusion food: tacos: burritos: nachos: rice plates. Various beverages.Chairman Bao: Vegetable and meat sandwiches filled with Asian-flavored meats and vegetables.
+370	1658388	BH & MT LLC	Truck	PRESIDIO AVE: POST ST to GEARY BLVD (900 - 999)	949 PRESIDIO AVE	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+371	1658416	MOMO INNOVATION LLC	Truck	CALIFORNIA ST: DAVIS ST to FRONT ST (100 - 199)	101 CALIFORNIA ST	APPROVED	MOMO Spicy Noodle: POPO's Noodle: Spicy Chicken Noodle: Rice Noodles
+372	1658321	Senor Sisig	Truck	BROADWAY: DAVIS ST to FRONT ST (50 - 99)	90 BROADWAY	APPROVED	Senor Sisig: Filipino fusion food: tacos: burritos: nachos: rice plates. Various beverages.Chairman Bao: Vegetable and meat sandwiches filled with Asian-flavored meats and vegetables.
+373	1658374	Plaza Garibaldy	Truck	CALIFORNIA ST: LEIDESDORFF ST to MONTGOMERY ST (449 - 499)	475 CALIFORNIA ST	APPROVED	Tacos: burritos: quesadillas
+374	1658360	Roadside Rotisserie Corporation / Country Grill	Truck	CALIFORNIA ST: BATTERY ST to SANSOME ST (300 - 399)	300 CALIFORNIA ST	APPROVED	Rotisserie Chicken; Ribs; Pork Loin; Roasted Potatoes; Chicken Wrap; Kale Salad; Drinks
+375	1658417	MOMO INNOVATION LLC	Truck	MISSION ST: ANNIE ST to 03RD ST (663 - 699)	667 MISSION ST	APPROVED	Noodles: Meat & Drinks
+376	1658369	Plaza Garibaldy	Truck	MONTGOMERY ST: POST ST to SUTTER ST (1 - 99)	1 MONTGOMERY ST	APPROVED	Tacos: burritos: quesadillas
+377	1658318	Senor Sisig	Truck	02ND ST: MISSION ST to MINNA ST (100 - 130)	120 02ND ST	APPROVED	Filipino fusion food: taco: burrito: nachos: rice plates
+378	1658356	Roadside Rotisserie Corporation / Country Grill	Truck	BUSH ST: 01ST ST \\ MARKET ST to BATTERY ST (1 - 99)	1 BUSH ST	APPROVED	Rotisserie Chicken: Ribs: Kickass Salad: Potatos w/fat dripping: chicken wrap.
+379	1658406	La Jefa	Truck	BAY SHORE BLVD: WATERLOO ST to MARENGO ST (501 - 559) -- EAST --	531 BAY SHORE BLVD	APPROVED	Tacos: burritos: quesadillas: tortas: nachos (refried beans: cheese sauce: salsa fresca): carnes (beef: chicken: marinated pork: fried pork): canned beans: rice: sodas: horchata drinks.
+380	1658393	BH & MT LLC	Truck	16TH ST: SPENCER ST to DOLORES ST (3220 - 3299)	3253 16TH ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+381	1658364	Treats by the Bay LLC	Truck	ELLIS ST: POWELL ST to CYRIL MAGNIN ST (100 - 148)	120 ELLIS ST	APPROVED	Prepackaged Kettlecorn
+382	1658392	BH & MT LLC	Truck	GROVE ST: BRODERICK ST to BAKER ST (1400 - 1499)	1477 GROVE ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+383	1658414	MOMO INNOVATION LLC	Truck	BUSH ST: BATTERY ST to SANSOME ST (100 - 199)	1 BUSH ST	APPROVED	Noodles
+384	1658394	BH & MT LLC	Truck	MARKET ST: CHURCH ST to 15TH ST (2101 - 2195) -- SOUTH --	2145 MARKET ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+385	1658336	San Pancho's Tacos	Truck	ALEMANY BLVD: SICKLES AVE to I-280 N ON RAMP \\ REGENT ST \\ SAN JOSE AVE (3101 - 3155) -- SOUTH --	3119 ALEMANY BLVD	APPROVED	Tacos: Burritos: Quesadillas: Tortas: Nachos: Hot Dogs:Soda: Water: Fruit Drinks
+386	1658390	BH & MT LLC	Truck	DOLORES ST: 14TH ST intersection	2001 MARKET ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+387	1658391	BH & MT LLC	Truck	GROVE ST: SCOTT ST to DIVISADERO ST (1200 - 1299)	1265 GROVE ST	APPROVED	Cold Truck: Breakfast: Sandwiches: Salads: Pre-Packaged Snacks: Beverages
+388	1658413	MOMO INNOVATION LLC	Truck	CALIFORNIA ST: BATTERY ST to SANSOME ST (300 - 399)	351 CALIFORNIA ST	APPROVED	Noodles: Meat & Drinks
+389	1658315	Senor Sisig	Truck	CALIFORNIA ST: DAVIS ST to FRONT ST (100 - 199)	101 CALIFORNIA ST	APPROVED	Senor Sisig: Filipino fusion food: tacos: burritos: nachos: rice plates. Various beverages.
+390	1658337	San Pancho's Tacos	Truck	BAY SHORE BLVD: CORTLAND AVE to WATERLOO ST (491 - 499) -- EAST --	491 BAY SHORE BLVD	APPROVED	Tacos: Burritos: Quesadillas: Tortas: Nachos: Hot Dogs:Soda: Water: Fruit Drinks
+391	1658415	MOMO INNOVATION LLC	Truck	MISSION ST: SHAW ALY to ANTHONY ST (543 - 586)	555 MISSION ST	APPROVED	Noodles
+392	1658316	Senor Sisig	Truck	MISSION ST: 05TH ST to MINT ST (900 - 930)	901 MISSION ST	APPROVED	Senor Sisig: Filipino fusion food: tacos: burritos: nachos: rice plates. Various beverages.
+393	1658362	Senor Sisig	Truck	PINE ST: SANSOME ST to CENTURY PL (300 - 340)	300 PINE ST	APPROVED	Filipino fusion food: tacos: burritos: nachos: rice plates. Various beverages.
+394	1658366	Treats by the Bay LLC	Truck	POST ST: MONTGOMERY ST to LICK PL (1 - 40)	1 MONTGOMERY ST	APPROVED	Sandwich: Donuts: Coffee: Soft Serve Ice Cream: Drinks
+395	1658368	Plaza Garibaldy	Truck	HOWARD ST: 01ST ST to MALDEN ALY (500 - 589)	540 HOWARD ST	APPROVED	Tacos: burritos: quesadillas
+396	1658333	Roadside Rotisserie Corporation / Country Grill	Truck	BRANNAN ST: STANFORD ST to JACK LONDON ALY (324 - 353)	333 BRANNAN ST	APPROVED	Rotisserie Chicken; Ribs; Pork Loin; Roasted Potatoes; Chicken Wrap; Kale Salad; Drinks
+397	1575189	Park's Catering	Truck	ARELIOUS WALKER DR: PALOU AVE to QUESADA AVE (1300 - 1399)	Assessors Block 4755/Lot049	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+398	1575183	Park's Catering	Truck	BURKE AVE: START: 1500-1599 BLOCK to 03RD ST (1500 - 1599)	1555 BURKE AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+399	1575197	Park's Catering	Truck	NEWHALL ST: MENDELL ST to EVANS AVE (200 - 399)	330 NEWHALL ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+400	1587542	Brazuca Grill	Truck	TENNESSEE ST: MARIPOSA ST to 18TH ST (600 - 699)	640 TENNESSEE ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+401	1587550	Brazuca Grill	Truck	03RD ST: 26TH ST to CESAR CHAVEZ ST (3000 - 3098) -- WEST --	3000 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+402	1587544	Brazuca Grill	Truck	TENNESSEE ST: 19TH ST to 20TH ST (800 - 899)	815 TENNESSEE ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+403	1587563	Brazuca Grill	Truck	FRANCISCO ST: MASON ST to TAYLOR ST (500 - 599)	500 FRANCISCO ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+404	1587539	Brazuca Grill	Truck	SHIPLEY ST: 04TH ST to 05TH ST (100 - 199)	133 SHIPLEY ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+405	1617853	Tacos El Flaco	Truck	03RD ST: 25TH ST to 26TH ST (2901 - 2999) -- EAST --	2901 03RD ST	EXPIRED	Tacos: Burritos: Tortas: Quesadillas: Chips & Salsa & Various Beverages
+406	1585472	San Francisco Street Foods, Inc.	Push Cart	NEW MONTGOMERY ST: MARKET ST \\ MONTGOMERY ST intersection	2 MONTGOMERY ST	EXPIRED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+407	1587543	Brazuca Grill	Truck	TENNESSEE ST: 18TH ST to 19TH ST (700 - 799)	790 TENNESSEE ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+408	1587570	Brazuca Grill	Truck	MINNESOTA ST: MINNESOTA ST to 26TH ST (1400 - 1499)	1400 MINNESOTA ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+409	1575191	Park's Catering	Truck	INNES AVE: ARELIOUS WALKER DR to GRIFFITH ST (800 - 899)	Assessors Block 4645/Lot015	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+410	1587549	Brazuca Grill	Truck	03RD ST: MARIPOSA ST to 18TH ST (2000 - 2098) -- WEST --	2030 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+411	1587561	Brazuca Grill	Truck	ELM ST: FRANKLIN ST to GOUGH ST (300 - 399)	368 ELM ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+412	1587536	Brazuca Grill	Truck	PENNSYLVANIA AVE: 22ND ST to 23RD ST (700 - 899)	700 PENNSYLVANIA AVE	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+413	1591826	Cochinita	Truck	BRANNAN ST: ZOE ST to 04TH ST (440 - 499)	490 BRANNAN ST	EXPIRED	Mexican Food: Yucatan Food: Street Food
+414	1587558	Brazuca Grill	Truck	10TH ST: SHERIDAN ST to HARRISON ST (350 - 399)	380 10TH ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+415	1585965	Curry Up Now	Truck	\N	225 BUSH ST	EXPIRED	Chicken Tiki Masala Burritos: Paneer Tiki Masala Burritos: Samosas: Mango Lassi
+416	1585966	Curry Up Now	Truck	SANSOME ST: GOLD ST to PACIFIC AVE (705 - 799)	727 SANSOME ST	EXPIRED	Indian Street Food: Tikka Masala Burritos; Samosas; Sexy Fries (Indian-inspired poutine); Naughty Naans; Deconstructed Samosas; Kathi Rolls; Lassis and Lemonades
+417	1587545	Brazuca Grill	Truck	TEXAS ST: SIERRA ST to 22ND ST (632 - 699)	640 TEXAS ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+418	1587535	Brazuca Grill	Truck	PENNSYLVANIA AVE: MARIPOSA ST to I-280 S OFF RAMP (200 - 256)	208 PENNSYLVANIA AVE	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+419	1575186	Park's Catering	Truck	EVANS AVE: HUNTERS POINT BLVD to JENNINGS ST \\ MIDDLE POINT RD (1031 - 1099)	1000 EVANS AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+420	1591823	Cochinita	Truck	TOWNSEND ST: LUSK ST to 04TH ST (252 - 299)	290 TOWNSEND ST	EXPIRED	Mexican Food: Yucatan Food: Street Food
+421	1585475	San Francisco Street Foods, Inc.	Push Cart	DRUMM ST: CALIFORNIA ST intersection	5 THE EMBARCADERO	EXPIRED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+422	1575194	Park's Catering	Truck	MISSISSIPPI ST: START: 1200-1299 BLOCK to CESAR CHAVEZ ST (1200 - 1299)	1200 MISSISSIPPI ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+423	1552373	Breakfast Embed	Truck	MISSION ROCK ST: 04TH ST intersection	1200 04TH ST	EXPIRED	Coffee: Pastries: Bagels: Sandwiches: Other Items
+424	1575178	Park's Catering	Truck	RANKIN ST: DAVIDSON AVE to EVANS AVE (200 - 299)	220 RANKIN ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+425	1587555	Brazuca Grill	Truck	ARMSTRONG AVE: HAWES ST to INGALLS ST (1300 - 1399)	1315 ARMSTRONG AVE	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+426	1585967	Curry Up Now	Truck	03RD ST: BRANNAN ST to TOWNSEND ST (600 - 699)	601 03RD ST	EXPIRED	Indian Street Food: Tikka Masala Burritos; Samosas; Sexy Fries (Indian-inspired poutine); Naughty Naans; Deconstructed Samosas; Kathi Rolls; Lassis and Lemonades
+427	1587556	Brazuca Grill	Truck	CESAR CHAVEZ ST: EVANS AVE to KANSAS ST (2100 - 2550)	2150 CESAR CHAVEZ ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+428	1587537	Brazuca Grill	Truck	PENNSYLVANIA AVE: I-280 S OFF RAMP to 25TH ST (1050 - 1099)	1082 PENNSYLVANIA AVE	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+429	1575180	Park's Catering	Truck	03RD ST: EVANS AVE to FAIRFAX AVE (3801 - 3899) -- EAST --	3801 03RD ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+430	1591828	Cochinita	Truck	07TH AVE: LINCOLN WAY to HUGO ST (1200 - 1246)	1219 07TH AVE	EXPIRED	Mexican Food: Yucatan Food: Street Food
+431	1568972	Fillmore Square	Truck	FILLMORE ST: TURK ST to EDDY ST (1200 - 1299)	1290 FILLMORE ST	EXPIRED	Breakfast and lunch items with a nod to various cultures
+432	1587571	Brazuca Grill	Truck	NEWHALL ST: BITTING AVE to EGBERT AVE (2660 - 2899)	2660 NEWHALL ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+433	1587569	Brazuca Grill	Truck	MARKET ST: 10TH ST \\ FELL ST \\ POLK ST to 11TH ST (1401 - 1455) -- SOUTH --	1411 MARKET ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+434	1587523	Chairman SF, LLC	Truck	ELLIS ST: 04TH ST \\ MARKET ST \\ STOCKTON ST to POWELL ST (1 - 99)	34 ELLIS ST	EXPIRED	Baos: bowls & drinks
+435	1587568	Brazuca Grill	Truck	MARIPOSA ST: PENNSYLVANIA AVE to MISSISSIPPI ST (1000 - 1099)	1040 MARIPOSA ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+436	1575188	Park's Catering	Truck	EVANS AVE: NAPOLEON ST \\ TOLAND ST to MARIN ST (2000 - 2099)	2020 EVANS AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+437	1591825	Cochinita	Truck	BEALE ST: BRYANT ST \\ DELANCEY ST to END: 500-501 BLOCK (500 - 599)	501 BEALE ST	EXPIRED	Mexican Food: Yucatan Food: Street Food
+438	1587540	Brazuca Grill	Truck	SHOTWELL ST: 15TH ST to 16TH ST (100 - 199)	131 SHOTWELL ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+439	1587521	Chairman SF, LLC	Truck	02ND ST: BRANNAN ST to TOWNSEND ST (600 - 699)	625 02ND ST	EXPIRED	Baos: bowls & drinks
+440	1587566	Brazuca Grill	Truck	INDIANA ST: 26TH ST to CESAR CHAVEZ ST (1500 - 1599)	1575 INDIANA ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+441	1575198	Park's Catering	Truck	NEWHALL ST: MENDELL ST to EVANS AVE (200 - 399)	220 NEWHALL ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+442	1568970	Fillmore Square	Truck	WEBSTER ST: EDDY ST to ELLIS ST (1201 - 1299) -- WEST --	1223 WEBSTER ST	EXPIRED	Breakfast and lunch items with a nod to various cultures
+443	1587538	Brazuca Grill	Truck	22ND ST: MISSISSIPPI ST to TEXAS ST (1255 - 1399)	1255 22ND ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+444	1587557	Brazuca Grill	Truck	CARROLL AVE: INGALLS ST to JENNINGS ST (1400 - 1499)	1420 CARROLL AVE	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+445	1587546	Brazuca Grill	Truck	26TH ST: MINNESOTA ST to INDIANA ST (1000 - 1099)	1051 26TH ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+446	1587559	Brazuca Grill	Truck	DONNER AVE: HAWES ST to INGALLS ST (1300 - 1399)	1347 DONNER AVE	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+447	1552372	Breakfast Embed	Truck	01ST ST: TEHAMA ST to CLEMENTINA ST (232 - 274)	234 01ST ST	EXPIRED	Coffee: Pastries: Bagels: Sandwiches: Other Items
+448	1587524	Chairman SF, LLC	Truck	MISSION ST: ECKER ST to SHAW ALY (521 - 548)	536 MISSION ST	EXPIRED	Baos: bowls & drinks
+449	1585473	San Francisco Street Foods, Inc.	Push Cart	SACRAMENTO ST: FRONT ST to BATTERY ST (300 - 399)	1 THE EMBARCADERO	EXPIRED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+450	1575181	Park's Catering	Truck	CESAR CHAVEZ ST: EVANS AVE to KANSAS ST (2100 - 2550)	2323 CESAR CHAVEZ ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+451	1587534	Brazuca Grill	Truck	OTIS ST: GOUGH ST \\ MCCOPPIN ST to 13TH ST \\ DUBOCE AVE \\ HWY 101 NORTHBOUND RAMP \\ MISSION ST (100 - 199)	150 OTIS ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+452	1585964	Curry Up Now	Truck	WASHINGTON ST: DRUMM ST intersection	370 DRUMM ST	EXPIRED	Chicken Tiki Masala Burritos: Paneer Tiki Masala Burritos: Samosas: Mango Lassi
+453	1587562	Brazuca Grill	Truck	FOLSOM ST: ERIE ST to 14TH ST (1718 - 1799)	1750 FOLSOM ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+454	1587564	Brazuca Grill	Truck	INDIANA ST: 20TH ST to 22ND ST (800 - 999)	998 INDIANA ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+455	1585476	San Francisco Street Foods, Inc.	Push Cart	POST ST: KEARNY ST to ROBERT KIRK LN (100 - 140)	100 POST ST	EXPIRED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+456	1575184	Park's Catering	Truck	BURKE AVE: START: 1500-1599 BLOCK to 03RD ST (1500 - 1599)	1575 BURKE AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+457	1575182	Park's Catering	Truck	BURKE AVE: START: 1500-1599 BLOCK to 03RD ST (1500 - 1599)	1570 BURKE AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+458	1568971	Fillmore Square	Truck	EDDY ST: WEBSTER ST to FILLMORE ST (1400 - 1499)	1290 FILLMORE ST	EXPIRED	Breakfast and lunch items with a nod to various cultures
+459	1577123	El Calamar Perubian Food Truck	Truck	MISSION ST: ANTHONY ST to 02ND ST (573 - 599)	85 02ND ST	EXPIRED	Lomo Saltado: Jalea: Ceviche: Calamar: Tilapia plate: chicken special. Soda: Water.
+460	1575199	Park's Catering	Truck	NEWHALL ST: MENDELL ST to EVANS AVE (200 - 399)	300 NEWHALL ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+461	1575187	Park's Catering	Truck	EVANS AVE: RANKIN ST to SELBY ST (1800 - 1890)	1801 EVANS AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+462	1587554	Brazuca Grill	Truck	03RD ST: EGBERT AVE to FITZGERALD AVE (6000 - 6170) -- WEST --	6000 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+463	1575190	Park's Catering	Truck	INNES AVE: EARL ST to ARELIOUS WALKER DR (700 - 799)	Assessors Block 4644/Lot008	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+464	1568973	Fillmore Square	Truck	FILLMORE ST: TURK ST to EDDY ST (1200 - 1299)	1245 FILLMORE ST	EXPIRED	Breakfast and lunch items with a nod to various cultures
+465	1587565	Brazuca Grill	Truck	INDIANA ST: 20TH ST to 22ND ST (800 - 999)	951 INDIANA ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+466	1587551	Brazuca Grill	Truck	03RD ST: CESAR CHAVEZ ST to MARIN ST (3100 - 3199)	3150 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+467	1575179	Park's Catering	Truck	03RD ST: ARTHUR AVE \\ CARGO WAY to BURKE AVE (3400 - 3498) -- WEST --	3450 03RD ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+468	1587552	Brazuca Grill	Truck	03RD ST: MARIN ST to ARTHUR AVE \\ CARGO WAY (3201 - 3399) -- EAST --	3305 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+469	1575177	Park's Catering	Truck	PHELPS ST: FAIRFAX AVE to SAM JORDANS WAY (500 - 599)	525 PHELPS ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+470	1591824	Cochinita	Truck	02ND ST: BRYANT ST to TABER PL (500 - 518)	501 02ND ST	EXPIRED	Mexican Food: Yucatan Food: Street Food
+471	1575185	Park's Catering	Truck	DAVIDSON AVE: RANKIN ST to SELBY ST (1600 - 1699)	1650 DAVIDSON AVE	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+472	1575196	Park's Catering	Truck	NAPOLEON ST: EVANS AVE \\ TOLAND ST to JERROLD AVE (25 - 299)	190 NAPOLEON ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+473	1575195	Park's Catering	Truck	NAPOLEON ST: EVANS AVE \\ TOLAND ST to JERROLD AVE (25 - 299)	250 NAPOLEON ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+474	1587547	Brazuca Grill	Truck	26TH ST: MINNESOTA ST to INDIANA ST (1000 - 1099)	1090 26TH ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+475	1587560	Brazuca Grill	Truck	EDDY ST: BUCHANAN ST to WEBSTER ST (1300 - 1399)	1346 EDDY ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+476	1591827	Cochinita	Truck	BRYANT ST: 04TH ST \\ I-80 E OFF RAMP to 05TH ST \\ I-80 E ON RAMP (600 - 699)	617 BRYANT ST	EXPIRED	Mexican Food: Yucatan Food: Street Food
+477	1575192	Park's Catering	Truck	LOOMIS ST: BARNEVELD AVE \\ MCKINNON AVE to OAKDALE AVE (1 - 99)	10 LOOMIS ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+478	1575193	Park's Catering	Truck	MARIN ST: KANSAS ST to HWY 101 N ON RAMP (2500 - 2599)	2525 MARIN ST	EXPIRED	Cold Truck: Hamburger: cheeseburgers: hot dogs: hot sandwiches: cold sandwiches: egg muffins: cup of noodles: corn dogs: canned soup: coffee: hot cocoa: hot tea: gatorade: juice: milk: soda: water: fruits: fruit salad: rice pudding: yogurt: candy bars: chips: cookies: donuts: granola bars: muffins
+479	1591829	Cochinita	Truck	DIVISADERO ST: MCALLISTER ST to GOLDEN GATE AVE (901 - 999) -- WEST --	999 DIVISADERO ST	EXPIRED	Mexican Food: Yucatan Food: Street Food
+480	1591822	Cochinita	Truck	24TH ST: UTAH ST to POTRERO AVE (2600 - 2699)	2601 24TH ST	EXPIRED	Panushos: Salbutes: Salad: Rice: Beans: Cochinita: etc.
+481	1569152	Datam SF LLC dba Anzu To You	Truck	TAYLOR ST: BAY ST to NORTH POINT ST (2500 - 2599)	2535 TAYLOR ST	EXPIRED	Asian Fusion - Japanese Sandwiches/Sliders/Misubi
+482	1587553	Brazuca Grill	Truck	03RD ST: MARIN ST to ARTHUR AVE \\ CARGO WAY (3201 - 3399) -- EAST --	3255 03RD ST	EXPIRED	Cold Truck: Sandwiches: Noodles:  Pre-packaged Snacks: Candy: Desserts Various Beverages
+483	1585474	San Francisco Street Foods, Inc.	Push Cart	HOWARD ST: 03RD ST to 04TH ST (700 - 799)	701 HOWARD ST	EXPIRED	Hot dogs: condiments: soft pretzels: soft drinks: coffee: cold beverages: pastries: bakery goods: cookies: ice cream: candy: soups: churros: chestnuts: nuts: fresh fruit: fruit juices: desserts: potato chips and popcorn.
+\.
+
+
+--
+-- Name: trucks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.trucks_id_seq', 483, true);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: trucks trucks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.trucks
+    ADD CONSTRAINT trucks_pkey PRIMARY KEY (id, truckid);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
